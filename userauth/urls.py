@@ -4,5 +4,6 @@ from . import views
 app_name = 'userauth'
 
 urlpatterns = [
-            url(r'^$',views.customerindex,name='customerlogin')
+            url(r'^$',views.customerindex,name='customerlogin'),
+            url(r'^sys/admin/$',views.customerindex,name='customerlogin')
 ]
