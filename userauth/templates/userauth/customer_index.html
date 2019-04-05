@@ -6,33 +6,34 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
-<title>Bank Online a Banking Category Bootstrap responsive Website Template | Home :: w3layouts</title>
+<title>Bank Online</title>
+{% load staticfiles %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <meta name="keywords" content="Bank Online Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href=" {% static 'userauth/css/bootstrap.css'%} " rel="stylesheet" type="text/css" media="all" />
 <!--// bootstrap-css -->
 <!-- css -->
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href=" {% static 'userauth/css/style.css' %} " type="text/css" media="all" />
 
 <!-- Vendor CSS-->
 <!-- <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
 <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all"> -->
 
 <!-- Main CSS-->
-<link href="css/main.css" rel="stylesheet" media="all">
+<link href=" {% static 'userauth/css/main.css'%} " rel="stylesheet" media="all">
 
 <!-- Icons font CSS-->
 <!-- <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> -->
 <!--// css -->
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet">
+<link href=" {% static 'userauth/css/font-awesome.css' %} " rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- font -->
 <!-- Font special for pages-->
@@ -41,8 +42,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
 <!-- //font -->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="{% static 'userauth/js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'userauth/js/bootstrap.js' %}"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){
@@ -52,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 <!-- flexslider -->
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'userauth/css/flexslider.css' %}" type="text/css" media="screen" />
 <!-- //flexslider -->
 <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -114,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
-			<script src="js/responsiveslides.min.js"></script>
+			<script src="{% static 'userauth/js/responsiveslides.min.js' %}"></script>
 			<script>
 						// You can also use "$(window).load(function() {"
 						$(function () {
@@ -185,7 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="modal-body">
 					<div class="agileits-w3layouts-info">
-						<img src="images/2.jpg" alt="" />
+						<img src="{% static 'userauth/images/2.jpg' %}" alt="" />
 						<p>Duis venenatis, turpis eu bibendum porttitor, sapien quam ultricies tellus, ac rhoncus risus odio eget nunc. Pellentesque ac fermentum diam. Integer eu facilisis nunc, a iaculis felis. Pellentesque pellentesque tempor enim, in dapibus turpis porttitor quis. Suspendisse ultrices hendrerit massa. Nam id metus id tellus ultrices ullamcorper.  Cras tempor massa luctus, varius lacus sit amet, blandit lorem. Duis auctor in tortor sed tristique. Proin sed finibus sem.</p>
 					</div>
 				</div>
@@ -203,80 +204,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div id="slider" class="flexslider">
 						  <ul class="slides">
 							<li>
-								<img src="images/5.jpg" alt="" />
+								<img src="{% static 'userauth/images/5.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/6.jpg" alt="" />
+								<img src="{% static 'userauth/images/6.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/7.jpg" alt="" />
+								<img src="{% static 'userauth/images/7.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/8.jpg" alt="" />
+								<img src="{% static 'userauth/images/8.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/9.jpg" alt="" />
+								<img src="{% static 'userauth/images/9.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/10.jpg" alt="" />
+								<img src="{% static 'userauth/images/10.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/5.jpg" alt="" />
+								<img src="{% static 'userauth/images/5.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/6.jpg" alt="" />
+								<img src="{% static 'userauth/images/6.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/7.jpg" alt="" />
+								<img src="{% static 'userauth/images/7.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/8.jpg" alt="" />
+								<img src="{% static 'userauth/images/8.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/9.jpg" alt="" />
+								<img src="{% static 'userauth/images/9.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/10.jpg" alt="" />
+								<img src="{% static 'userauth/images/10.jpg' %}" alt="" />
 							</li>
 						  </ul>
 						</div>
 						<div id="carousel" class="flexslider">
 						  <ul class="slides">
 							<li>
-								<img src="images/5.jpg" alt="" />
+								<img src="{% static 'userauth/images/5.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/6.jpg" alt="" />
+								<img src="{% static 'userauth/images/6.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/7.jpg" alt="" />
+								<img src="{% static 'userauth/images/7.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/8.jpg" alt="" />
+								<img src="{% static 'userauth/images/8.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/9.jpg" alt="" />
+								<img src="{% static 'userauth/images/9.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/10.jpg" alt="" />
+								<img src="{% static 'userauth/images/10.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/5.jpg" alt="" />
+								<img src="{% static 'userauth/images/5.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/6.jpg" alt="" />
+								<img src="{% static 'userauth/images/6.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/7.jpg" alt="" />
+								<img src="{% static 'userauth/images/7.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/8.jpg" alt="" />
+								<img src="{% static 'userauth/images/8.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/9.jpg" alt="" />
+								<img src="{% static 'userauth/images/9.jpg' %}" alt="" />
 							</li>
 							<li>
-								<img src="images/10.jpg" alt="" />
+								<img src="{% static 'userauth/images/10.jpg' %}" alt="" />
 							</li>
 						  </ul>
 						</div>
@@ -390,7 +391,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="agile-services-grids">
 				<div class="col-md-4 agile-services-grid">
-					<img src="images/11.jpg" alt="" />
+					<img src="{% static 'userauth/images/11.jpg' %}" alt="" />
 					<h6>Proin blandit</h6>
 					<p>Nam sit amet odio malesuada, ullamcorper arcu vel, pharetra lorem. Fusce id auctor nulla.</p>
 					<ul>
@@ -402,7 +403,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="col-md-4 agile-services-grid">
-					<img src="images/12.jpg" alt="" />
+					<img src="{% static 'userauth/images/12.jpg' %}" alt="" />
 					<h6>Nullam tempor</h6>
 					<p>Nam sit amet odio malesuada, ullamcorper arcu vel, pharetra lorem. Fusce id auctor nulla.</p>
 					<ul>
@@ -414,7 +415,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="col-md-4 agile-services-grid">
-					<img src="images/13.jpg" alt="" />
+					<img src="{% static 'userauth/images/13.jpg' %}" alt="" />
 					<h6>Etiam tristique</h6>
 					<p>Nam sit amet odio malesuada, ullamcorper arcu vel, pharetra lorem. Fusce id auctor nulla.</p>
 					<ul>
@@ -445,13 +446,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<div class="testimonial-img-grid">
 										<div class="testimonial-img t-img1">
-											<img src="images/14.jpg" alt="" />
+											<img src="{% static 'userauth/images/14.jpg' %}" alt="" />
 										</div>
 										<div class="testimonial-img">
-											<img src="images/15.jpg" alt="" />
+											<img src="{% static 'userauth/images/15.jpg' %}" alt="" />
 										</div>
 										<div class="testimonial-img t-img2">
-											<img src="images/16.jpg" alt="" />
+											<img src="{% static 'userauth/images/16.jpg' %}" alt="" />
 										</div>
 										<div class="clearfix"> </div>
 									</div>
@@ -464,13 +465,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<div class="testimonial-img-grid">
 										<div class="testimonial-img t-img1">
-											<img src="images/15.jpg" alt="" />
+											<img src="{% static 'userauth/images/15.jpg' %}" alt="" />
 										</div>
 										<div class="testimonial-img">
-											<img src="images/16.jpg" alt="" />
+											<img src="{% static 'userauth/images/16.jpg' %}" alt="" />
 										</div>
 										<div class="testimonial-img t-img2">
-											<img src="images/14.jpg" alt="" />
+											<img src="{% static 'userauth/images/14.jpg' %}" alt="" />
 										</div>
 										<div class="clearfix"> </div>
 									</div>
@@ -483,13 +484,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<div class="testimonial-img-grid">
 										<div class="testimonial-img t-img1">
-											<img src="images/16.jpg" alt="" />
+											<img src="{% static 'userauth/images/16.jpg' %}" alt="" />
 										</div>
 										<div class="testimonial-img">
-											<img src="images/14.jpg" alt="" />
+											<img src="{% static 'userauth/images/14.jpg' %}" alt="" />
 										</div>
 										<div class="testimonial-img t-img2">
-											<img src="images/15.jpg" alt="" />
+											<img src="{% static 'userauth/images/15.jpg' %}" alt="" />
 										</div>
 										<div class="clearfix"> </div>
 									</div>
@@ -530,76 +531,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!-- //testimonial -->
 	<!-- blog -->
-	<!-- <div class="blog" id="login">
-		<div class="container">
-			<div class="agileits-blog-grids">
-				<div class="wthree-heading">
-					<h3>Latest Blog Posts</h3>
-					<h5>Vivamus facilisis dolor ac sapien pharetra</h5>
-				</div>
-			</div>
-			<div class="posts-grids">
-				<div class="col-sm-4 w3-agile-post-grids">
-					<div class="w3-agile-post-img">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<ul>
-								<li><i class="fa fa-comments" aria-hidden="true"></i> 14</li>
-								<li><i class="fa fa-heart" aria-hidden="true"></i> 240</li>
-								<li><i class="fa fa-share" aria-hidden="true"></i> Share</li>
-							</ul>
-						</a>
-					</div>
-					<div class="w3-agile-post-info">
-						<h4><a href="#" data-toggle="modal" data-target="#myModal">Quisque a rhoncus</a></h4>
-						<ul>
-							<li>By <a href="#">Admin</a></li>
-							<li>Dec 03rd,2016</li>
-						</ul>
-						<p>Suspendisse in nisl at ipsum molestie dignissim. Pellentesque est nisi, blandit eget aliquam sed, consequat nec risus.</p>
-					</div>
-				</div>
-				<div class="col-sm-4 w3-agile-post-grids">
-					<div class="w3-agile-post-img w3-agile-post-img1">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<ul>
-								<li><i class="fa fa-comments" aria-hidden="true"></i> 05</li>
-								<li><i class="fa fa-heart" aria-hidden="true"></i> 874</li>
-								<li><i class="fa fa-share" aria-hidden="true"></i> Share</li>
-							</ul>
-						</a>
-					</div>
-					<div class="w3-agile-post-info">
-						<h4><a href="#" data-toggle="modal" data-target="#myModal">Quisque a rhoncus</a></h4>
-						<ul>
-							<li>By <a href="#">Admin</a></li>
-							<li>Dec 14th,2016</li>
-						</ul>
-						<p>Suspendisse in nisl at ipsum molestie dignissim. Pellentesque est nisi, blandit eget aliquam sed, consequat nec risus.</p>
-					</div>
-				</div>
-				<div class="col-sm-4 w3-agile-post-grids">
-					<div class="w3-agile-post-img w3-agile-post-img2">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<ul>
-								<li><i class="fa fa-comments" aria-hidden="true"></i> 21</li>
-								<li><i class="fa fa-heart" aria-hidden="true"></i> 287</li>
-								<li><i class="fa fa-share" aria-hidden="true"></i> Share</li>
-							</ul>
-						</a>
-					</div>
-					<div class="w3-agile-post-info">
-						<h4><a href="#" data-toggle="modal" data-target="#myModal">Quisque a rhoncus</a></h4>
-						<ul>
-							<li>By <a href="#">Admin</a></li>
-							<li>Nov 24th,2016</li>
-						</ul>
-						<p>Suspendisse in nisl at ipsum molestie dignissim. Pellentesque est nisi, blandit eget aliquam sed, consequat nec risus.</p>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div> -->
+
 	<!-- //blog -->
 	<!-- contact -->
 	<div class="contact" id="login">
@@ -660,10 +592,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</form>
 					</div>
 			</div>
-			<div class="w3agile-map">
-				<h3>Find us here</h3>
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102623.04862310845!2d-82.59779327009554!3d36.506579763153326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885a856b70074b97%3A0x6f9cc0d30bcc841f!2sKingsport%2C+TN%2C+USA!5e0!3m2!1sen!2sin!4v1471495038514" allowfullscreen=""></iframe>
-			</div>
+
 		</div>
 	</div>
 	<!-- //contact -->
@@ -676,8 +605,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</footer>
 	<!-- //copyright -->
-	<script src="js/jarallax.js"></script>
-	<script src="js/SmoothScroll.min.js"></script>
+	<script src="{% static 'userauth/js/jarallax.js' %}"></script>
+	<script src="{% static 'userauth/js/SmoothScroll.min.js' %}"></script>
 	<script type="text/javascript">
 		/* init Jarallax */
 		$('.jarallax').jarallax({
@@ -696,10 +625,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="vendor/datepicker/daterangepicker.js"></script> -->
 
 	<!-- Main JS-->
-	<script src="js/global.js"></script>
-	<script src="js/responsiveslides.min.js"></script>
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
+	<script src=" {% static 'userauth/js/global.js' %} "></script>
+	<script src="{% static 'userauth/js/responsiveslides.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'userauth/js/move-top.js' %}"></script>
+	<script type="text/javascript" src="{% static 'userauth/js/easing.js' %}"></script>
 	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -718,7 +647,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 <!-- //here ends scrolling icon -->
 <!-- FlexSlider -->
-  <script defer src="js/jquery.flexslider.js"></script>
+  <script defer src="{% static 'userauth/js/jquery.flexslider.js' %}"></script>
 	<script type="text/javascript">
     $(window).load(function(){
       $('#carousel').flexslider({
