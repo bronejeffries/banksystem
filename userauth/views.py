@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def customerindex(request):
     return render(request,'userauth/customer_index.html',{})
+
+def adminindex(request):
+    
