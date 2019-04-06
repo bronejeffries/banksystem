@@ -40,7 +40,8 @@
               WELCOME
               <span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
-                <form>
+                <form method="post" action="{% url 'userauth:admin_index' %}">
+                  {% csrf_token %}
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="username" type="text" placeholder="Username or email" autocomplete="off">
                     </div>
