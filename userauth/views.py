@@ -3,7 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 
 def customerindex(request):
-    return render(request,'userauth/customer_index.html',{})
+    if request.method == 'GET':
+        return render(request,'userauth/customer_index.html',{})
 
-def adminindex(request):
-    
+def admin_index(request):
+    if request.method == 'GET':
+        return render(request,'userauth/admin_index.html',{})

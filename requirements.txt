@@ -1,9 +1,0 @@
-dj-database-url
-Django
-django-heroku
-gunicorn
-mysqlclient
-psycopg2
-pytz
-sqlparse
-whitenoise
