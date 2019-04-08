@@ -20,10 +20,11 @@
   <link rel="stylesheet" type="text/css" href="{% static 'sysadmin/css/zabuto_calendar.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'sysadmin/lib/gritter/css/jquery.gritter.css' %}" />
 
+{% block page_style%}{%endblock %}
+
   <link href="{% static 'sysadmin/lib/advanced-datatable/css/demo_page.css' %} " rel="stylesheet" />
   <link href="{% static 'sysadmin/lib/advanced-datatable/css/demo_table.css' %}" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'sysadmin/lib/advanced-datatable/css/DT_bootstrap.css' %}" />
-
 
   <!-- Custom styles for this template -->
   <link href="{% static 'sysadmin/css/style.css' %}" rel="stylesheet">
@@ -49,7 +50,6 @@
           <li><a class="logout" href="">Logout</a></li>
         </ul>
       </div>
-      {% include 'sysadmin/partials/success.html' %}
     </header>
     <!--header end-->
     <!-- **********************************************************************************************************************************************************
@@ -63,9 +63,27 @@
           <p class="centered"><a href="profile.html"><img src="{% static 'sysadmin/img/ui-sam.jpg' %}" class="img-circle" width="80"></a></p>
           <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
-            <a class="active" href="{%url 'sysadmin:index'%}">
+            <a class="{% block dashboard_active %}{% endblock %}" href="{%url 'sysadmin:index'%}">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a  class="{% block accounts_active %}{% endblock %}" href="">
+              <i class="fa fa-users"></i>
+              <span>Accounts</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a class="{% block transactions_active %}{% endblock %}" href="{% url 'sysadmin:alltransactions' %}">
+              <i class="fa fa-briefcase"></i>
+              <span>Transactions</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a class="{% block deposits_active %}{% endblock %}" href="#">
+              <i class="fa fa-money"></i>
+              <span>Make Deposits</span>
               </a>
           </li>
         </ul>
@@ -104,7 +122,7 @@
           -->
           <!-- Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a> -->
         </div>
-        <a href="index.html#" class="go-top">
+        <a href="#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>
@@ -114,6 +132,10 @@
 
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="{% static 'sysadmin/lib/jquery/jquery.min.js' %}"></script>
+
+  <script type="text/javascript" language="javascript" src="{% static 'sysadmin/lib/advanced-datatable/js/jquery.js' %}"></script>
+  <script type="text/javascript" language="javascript" src="{% static 'sysadmin/lib/advanced-datatable/js/jquery.dataTables.js' %}"></script>
+  <script type="text/javascript" src="{% static 'sysadmin/lib/advanced-datatable/js/DT_bootstrap.js' %}"></script>
 
   <script src="{% static 'sysadmin/lib/bootstrap/js/bootstrap.min.js' %}"></script>
   <script class="include" type="text/javascript" src="{% static 'sysadmin/lib/jquery.dcjqaccordion.2.7.js' %}"></script>
@@ -128,9 +150,8 @@
   <script src="{% static 'sysadmin/lib/sparkline-chart.js' %}"></script>
   <script src="{% static 'sysadmin/lib/zabuto_calendar.js' %}"></script>
 
-  <script type="text/javascript" language="javascript" src="{% static 'sysadmin/lib/advanced-datatable/js/jquery.js' %}"></script>
-  <script type="text/javascript" language="javascript" src="{% static 'sysadmin/lib/advanced-datatable/js/jquery.dataTables.js' %}"></script>
-  <script type="text/javascript" src="{% static 'sysadmin/lib/advanced-datatable/js/DT_bootstrap.js' %}"></script>
+{% block page_script %}{% endblock %}
+
  <!--  <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
@@ -212,7 +233,7 @@
        */
       var nCloneTh = document.createElement('th');
       var nCloneTd = document.createElement('td');
-      nCloneTd.innerHTML = '<img src="lib/advanced-datatable/images/details_open.png">';
+      nCloneTd.innerHTML = '<img src="{% static "sysadmin/lib/advanced-datatable/images/details_open.png" %}">';
       nCloneTd.className = "center";
 
       $('#hidden-table-info thead tr').each(function() {
@@ -244,11 +265,11 @@
         var nTr = $(this).parents('tr')[0];
         if (oTable.fnIsOpen(nTr)) {
           /* This row is already open - close it */
-          this.src = "lib/advanced-datatable/media/images/details_open.png";
+          this.src = "{% static 'sysadmin/lib/advanced-datatable/media/images/details_open.png' %}";
           oTable.fnClose(nTr);
         } else {
           /* Open this row */
-          this.src = "lib/advanced-datatable/images/details_close.png";
+          this.src = "{% static 'sysadmin/lib/advanced-datatable/images/details_close.png' %}";
           oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
         }
       });

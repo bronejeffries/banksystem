@@ -1,6 +1,8 @@
 
 {% extends 'sysadmin/base.html' %}
 
+{% block dashboard_active %} active {% endblock %}
+
 {% block body%}
 
 <!--main content start-->
@@ -207,7 +209,7 @@
             <span class="badge bg-theme"><i class="fa fa-plus-circle"></i></span>
           </div>
           <div class="details">
-              <a href="#">
+              <a href="{% url 'sysadmin:add_customer' %}">
                 add new customer
               </a>
           </div>

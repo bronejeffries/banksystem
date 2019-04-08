@@ -1,0 +1,157 @@
+{% extends 'sysadmin/base.html' %}
+{% block accounts_active  %} active {% endblock %}
+
+{% block page_style%}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'sysadmin/lib/bootstrap-fileupload/bootstrap-fileupload.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'sysadmin/lib/bootstrap-datepicker/css/datepicker.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'sysadmin/lib/bootstrap-daterangepicker/daterangepicker.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'sysadmin/lib/bootstrap-timepicker/compiled/timepicker.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'sysadmin/lib/bootstrap-datetimepicker/css/datetimepicker.css' %}" />
+
+{%endblock%}
+
+{% block page_script %}
+{% load static %}
+
+<script src="{% static 'sysadmin/lib/jquery-ui-1.9.2.custom.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-fileupload/bootstrap-fileupload.js' %}"></script>
+<script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-daterangepicker/date.js' %}"></script>
+<script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+<script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' %}"></script>
+<script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-daterangepicker/moment.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-timepicker/js/bootstrap-timepicker.js' %}"></script>
+<script src="{% static 'sysadmin/lib/advanced-form-components.js' %}"></script>
+<script src="{% static 'sysadmin/lib/form-validation-script.js' %}"></script>
+
+
+{% endblock %}
+
+{% block body %}
+
+
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper">
+    <h3><i class="fa fa-angle-right"></i>Add New Customer </h3>
+
+    <!-- row -->
+    <!--ADVANCED FILE INPUT-->
+    <div class="row mt">
+      <div class="col-lg-12">
+        <div class="form-panel">
+          <form action="#" class="cmxform form-horizontal style-form" id="commentForm" >
+              <h4 class="mb">Personal Information</h4>
+              <div class="form-group ">
+                <label for="cname" class="control-label col-lg-3">First Name (required)</label>
+                <div class="col-lg-5">
+                  <input class=" form-control" id="cname" name="firstname" minlength="2" type="text" required />
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="cmname" class="control-label col-lg-3">Middle Name (optional)</label>
+                <div class="col-lg-5">
+                  <input class=" form-control" id="cmname" name="middlename" minlength="2" type="text" />
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="clname" class="control-label col-lg-3">Last Name (required)</label>
+                <div class="col-lg-5">
+                  <input class=" form-control" id="clname" name="lastname" minlength="2" type="text" required />
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="cemail" class="control-label col-lg-3">E-Mail (optional)</label>
+                <div class="col-lg-6">
+                  <input class="form-control " id="cemail" type="email" name="email" />
+                </div>
+              </div>
+              <div class="form-group">
+              <label class="control-label col-md-3">Date Of Birth(required)</label>
+              <div class="col-md-3 col-xs-11">
+                <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2014" class="input-append date dpYears">
+                  <input type="text" readonly="" name="d_o_b"  placeholder="01-01-2014" size="16" class="form-control">
+                  <span class="input-group-btn add-on">
+                    <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <span class="help-block">Select date</span>
+              </div>
+            </div>
+            <div class="form-group last">
+              <label class="control-label col-md-3">Image(optional)</label>
+              <div class="col-md-9">
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" />
+                  </div>
+                  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                  <div>
+                    <span class="btn btn-theme02 btn-file">
+                      <span class="fileupload-new"><i class="fa fa-paperclip"></i> Select image</span>
+                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                    <input type="file" name="customer_pic" class="default" />
+                    </span>
+                    <a href="#" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
+                  </div>
+                </div>
+                <span class="label label-info">NOTE!</span>
+                <span>
+                  Attached image thumbnail is
+                  supported in Latest Firefox, Chrome, Opera,
+                  Safari and Internet Explorer 10 only
+                  </span>
+              </div>
+            </div>
+
+            <h4 class="mb">Account details </h4>
+            <div class="form-group ">
+              <label for="caccounttype" class="control-label col-lg-3">Account type (required)</label>
+              <div class="col-lg-5">
+                <select class=" form-control" id="caccounttype" name="account_type" type="text" required>
+                  <option value="">select account type</option>
+                  <option value="account type 1">account type 1</option>
+                  <option value="account type 2">account type 2</option>
+                  <option value="account type 3">account type 3</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label for="caccount_number" class="control-label col-lg-3">Account Number(required)</label>
+              <div class="col-lg-5">
+                <input class=" form-control" id="caccount_number" name="account_number" minlength="2" type="text" required />
+                 <button class="btn btn-theme02" type="button">Generate</button>
+              </div>
+            </div>
+            <h4 class="mb">Online Account Credentials</h4>
+            <div class="form-group ">
+              <label for="clname" class="control-label col-lg-3">Username</label>
+              <div class="col-lg-5">
+                <input class="form-control" id="cuser_name" name="user_name" disabled minlength="2" type="text" />
+                <input  id="cuser_name_hidden" name="user_name_hidden" type="hidden" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-offset-3 col-lg-6">
+                <button class="btn btn-theme" type="submit">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /form-panel -->
+      </div>
+      <!-- /col-lg-12 -->
+    </div>
+    <!-- row -->
+  </section>
+  <!-- /wrapper -->
+</section>
+<!-- /MAIN CONTENT -->
+<!--main content end-->
+
+
+
+
+{% endblock %}
