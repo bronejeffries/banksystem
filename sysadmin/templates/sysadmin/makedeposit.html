@@ -1,0 +1,52 @@
+{% extends 'sysadmin/base.html'%}
+{% block deposits_active %} active {% endblock %}
+{% block body %}
+
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper site-min-height">
+    <h3><i class="fa fa-angle-right"></i> Deposit </h3>
+    <div class="row mt">
+      <div class="col-lg-12">
+        <h4><i class="fa fa-angle-right"></i> Enter deposit information</h4>
+        <div class="form-panel">
+          <div class=" form">
+            <form class="cmxform form-horizontal style-form" id="commentForm" method="post" action="">
+              <div class="form-group ">
+                <label for="caccount_name" class="control-label col-lg-2 col-lg-offset-2">Account Name (required)</label>
+                <div class="col-lg-6">
+                  <input class=" form-control" id="caccount_name" name="account_name" minlength="2" type="text" required />
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="caccount_number" class="control-label col-lg-2 col-lg-offset-2">Account Number (required)</label>
+                <div class="col-lg-6">
+                  <input class="form-control " id="caccount_number" type="text" name="account_number" required />
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="camount" class="control-label col-lg-2 col-lg-offset-2">Amount(required)</label>
+                <div class="col-lg-6">
+                  <input class="form-control " id="camount" type="number" name="amount" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-lg-offset-6 col-lg-6">
+                  <button class="btn btn-theme" type="submit">Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /form-panel -->
+      </div>
+      <!-- /col-lg-12 -->
+    </div>
+  </section>
+  <!-- /wrapper -->
+</section>
+<!-- /MAIN CONTENT -->
+
+
+{% endblock %}
