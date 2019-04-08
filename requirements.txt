@@ -1,6 +1,7 @@
 dj-database-url
 Django
 django-heroku
+djangorestframework
 gunicorn
 mysqlclient
 psycopg2
