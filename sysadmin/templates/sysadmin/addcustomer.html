@@ -25,6 +25,7 @@
 <script type="text/javascript" src="{% static 'sysadmin/lib/bootstrap-timepicker/js/bootstrap-timepicker.js' %}"></script>
 <script src="{% static 'sysadmin/lib/advanced-form-components.js' %}"></script>
 <script src="{% static 'sysadmin/lib/form-validation-script.js' %}"></script>
+<script src="{% static 'sysadmin/customjs/addcustomerjs.js' %}" charset="utf-8"></script>
 
 {% endblock %}
 
@@ -41,7 +42,8 @@
     <div class="row mt">
       <div class="col-lg-12">
         <div class="form-panel">
-          <form action="#" class="cmxform form-horizontal style-form" id="commentForm" >
+          <form action="" method="post" class="cmxform form-horizontal style-form" id="commentForm" >
+            {% csrf_token %}
               <h4 class="mb">Personal Information</h4>
               <div class="form-group ">
                 <label for="cname" class="control-label col-lg-3">First Name (required)</label>
@@ -70,8 +72,8 @@
               <div class="form-group">
               <label class="control-label col-md-3">Date Of Birth(required)</label>
               <div class="col-md-3 col-xs-11">
-                <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2014" class="input-append date dpYears">
-                  <input type="text" readonly="" name="d_o_b"  placeholder="01-01-2014" size="16" class="form-control">
+                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="2014-01-01" class="input-append date dpYears">
+                  <input type="date" readonly="" name="d_o_b"  placeholder="01-01-2014" size="16" class="form-control">
                   <span class="input-group-btn add-on">
                     <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
                     </span>
@@ -106,6 +108,15 @@
             </div>
 
             <h4 class="mb">Account details </h4>
+
+            <div class="form-group ">
+              <label for="caccount_name" class="control-label col-lg-3">Account Name</label>
+              <div class="col-lg-5">
+                <input class="form-control" id="caccount_name" name="account_name" disabled minlength="2" type="text" />
+                <input  id="caccount_name_hidden" name="account_name_hidden" type="hidden" />
+              </div>
+            </div>
+
             <div class="form-group ">
               <label for="caccounttype" class="control-label col-lg-3">Account type (required)</label>
               <div class="col-lg-5">
@@ -126,7 +137,7 @@
             </div>
             <h4 class="mb">Online Account Credentials</h4>
             <div class="form-group ">
-              <label for="clname" class="control-label col-lg-3">Username</label>
+              <label for="cuser_name" class="control-label col-lg-3">Username</label>
               <div class="col-lg-5">
                 <input class="form-control" id="cuser_name" name="user_name" disabled minlength="2" type="text" />
                 <input  id="cuser_name_hidden" name="user_name_hidden" type="hidden" />

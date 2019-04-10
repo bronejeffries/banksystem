@@ -549,7 +549,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="card-heading"></div>
 					<div class="card-body">
 							<h2 class="title">Sign in Info</h2>
-							<form method="POST">
+							<form method="post" action="{% url 'userauth:customerlogin' %}">
+								{% csrf_token %}
 								<div class="input-group">
 										<!-- <input class="inputstyle-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday">
 										<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
@@ -559,7 +560,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
 								</div>
 									<div class="input-group">
-											<input class="input--style-3" type="text" placeholder="Account Name or Email" name="username">
+											<input class="input--style-3" type="text" placeholder="Username" name="username">
 									</div>
 									<div class="input-group">
 											<!-- <input class="inputstyle-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday">
