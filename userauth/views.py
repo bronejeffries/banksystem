@@ -45,7 +45,7 @@ def customerlogin(request):
             else:
                 login(request,user)
                 print('user logined in successfully')
-                return HttpResponseRedirect(reverse('userauth:user_set_password'))
+                return HttpResponseRedirect(reverse('customer:index'))
 
         else:
             return HttpResponseRedirect(reverse('userauth:customerindex'))
@@ -65,7 +65,7 @@ def setpassword(request):
                 user.set_password(new_password)
                 user.save()
                 login(request,user)
-                return HttpResponseRedirect(reverse('userauth:customerindex'))
+                return HttpResponseRedirect(reverse('customer:index'))
             else:
                 print('no password set')
                 return HttpResponseRedirect(reverse('userauth:user_set_password'))
