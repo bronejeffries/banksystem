@@ -7,6 +7,7 @@ from userauth.serializers import UserSerializer
 from customer.serializers import ProfileSerializer, AccountSerializer, DepositTransactionSerializer
 from django.contrib.auth.models import User
 from customer.models import Account
+from django.contrib import messages
 
 # Create your views here.
 
@@ -80,7 +81,12 @@ def add_customer(request):
                 if new_account.is_valid():
                     new_account.save()
                     print(userpassword)
-                    return HttpResponseRedirect(reverse('sysadmin:index'))
+                    successmessage = "Customer registered successfully<br>"
+                    successmessage += "Online account credentials <br>"
+                    successmessage += "Username: "+ username + "<br>"
+                    successmessage += "Password: "+ userpassword + "<br>"
+                    messages.success(request, successmessage)
+                    return HttpResponseRedirect(reverse('sysadmin:add_customer'))
                 else:
                     print('account creation failed',new_account.errors)
             else:
@@ -107,21 +113,22 @@ def makedeposit(request):
         account = get_account(account_name, account_number)
         if account:
             amount = request.POST['amount']
-            account.available_amount += int(amount)
-            account.save()
-
             deposit_record_data = {
             'account':account.id,
             'amount':amount
             }
-
             new_deposit_record = DepositTransactionSerializer(data=deposit_record_data)
             if new_deposit_record.is_valid():
                 new_deposit_record.save()
+                account.available_amount += int(amount)
+                account.save()
+                messages.success(request,'Deposit successfully made')
                 return HttpResponseRedirect(reverse('sysadmin:makedeposit'))
             else:
                 print('deposit error', new_deposit_record.errors)
-                return HttpResponseRedirect(reverse('sysadmin:index'))
+                messages.warning(request,'Transaction unsuccessful\n please check the account details ')
+                return HttpResponseRedirect(reverse('sysadmin:makedeposit'))
         else:
             print('account issues', 'no account')
-            return HttpResponseRedirect(reverse('sysadmin:index'))
+            messages.warning(request,'Transaction unsuccessful <br> please check the account details ')
+            return HttpResponseRedirect(reverse('sysadmin:makedeposit'))

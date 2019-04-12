@@ -5,7 +5,7 @@ from .serializers import AdminuserSerializer
 from django.contrib.auth import authenticate, login, logout
 from .models import Defaultpasswords
 from django.contrib.auth.models import User
-
+from django.contrib import messages
 # Create your views here.
 
 def customerindex(request):
@@ -102,6 +102,8 @@ def add_admin(request):
         new_admin = AdminuserSerializer(data=userdata)
         if new_admin.is_valid():
             new_admin.save()
+            messages.success(request,'New admin registered successfully')
             return HttpResponseRedirect(reverse('sysadmin:index'))
         else:
-            print('admin failed',new_admin.errors)
+            messages.warning(request, new_admin.errors['username'][0] if new_admin.errors['username'] else "Registration Error")
+            return HttpResponseRedirect(reverse('sysadmin:index'))

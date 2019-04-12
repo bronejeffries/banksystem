@@ -22,11 +22,12 @@
   <link rel="stylesheet" type="text/css" href="{% static 'sysadmin/lib/gritter/css/jquery.gritter.css' %}" />
 
 
-
   <!-- Custom styles for this template -->
   <link href="{% static 'sysadmin/css/style.css' %}" rel="stylesheet">
   <link href="{% static 'sysadmin/css/style-responsive.css' %}" rel="stylesheet">
   <script src="{% static 'sysadmin/lib/chart-master/Chart.js' %}"></script>
+
+
 </head>
 
 <body>
@@ -92,7 +93,6 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-
     {% block body %}
     {% endblock %}
 
@@ -104,7 +104,7 @@
         <p>
           &copy; Copyrights <strong>abilaAlantheii</strong>
           <p>
-            @Hubsight . All Rights Reserved
+            @Hubsight . All Rights Reserved 
                           <script>
                 document.write(new Date().getFullYear())
               </script>
@@ -195,6 +195,8 @@
     }
 
   </script>
+  <script type="text/javascript" src="{% static 'sysadmin/lib/gritter/js/jquery.gritter.js' %}"></script>
+  <script type="text/javascript" src="{% static 'sysadmin/lib/gritter-conf.js'%}"></script>
 
 </body>
 
