@@ -40,7 +40,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>ADMIN<span> PANEL</span></b></a>
+      <a href="{% url 'sysadmin:index' %}" class="logo"><b>ADMIN<span> PANEL</span></b></a>
       <!--logo end-->
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
@@ -57,7 +57,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="{% static 'sysadmin/img/user.png' %}" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="#"><img src="{% static 'sysadmin/img/user.png' %}" class="img-circle" width="80"></a></p>
           <h5 class="centered">Admin</h5>
           <li class="mt">
             <a class="{% block dashboard_active %}{% endblock %}" href="{%url 'sysadmin:index'%}">

@@ -1,0 +1,59 @@
+{% extends 'customer/basetemplate.html' %}
+{% block page_transaction_active%} active {% endblock %}
+{% block page_view__active%}active{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid dashboard-content">
+
+  <div class="row">
+    <!-- recent pending  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+            <h5 class="card-header">Pending Transactions</h5>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="bg-light">
+                            <tr class="border-0">
+                                <th class="border-0">#</th>
+                                <th class="border-0">Bank Name</th>
+                                <th class="border-0">Country</th>
+                                <th class="border-0">Account Name</th>
+                                <th class="border-0">Account Number</th>
+                                <th class="border-0">Amount</th>
+                                <th class="border-0">Initialized On</th>
+                                <!-- <th class="border-0">Order Time</th>
+                                <th class="border-0">Customer</th> -->
+                                <th class="border-0">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                  Stanbic
+                                </td>
+                                <td>Uganda</td>
+                                <td>Kiweewa Micheal </td>
+                                <td>id000001045 </td>
+                                <td>$80.00</td>
+                                <td>march,2,2019</td>
+                                <td><span class="badge-dot badge-brand mr-1"></span>pending</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+<!-- end recent pending  -->
+
+  </div>
+
+</div>
+
+
+{% endblock%}

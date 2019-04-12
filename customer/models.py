@@ -28,6 +28,10 @@ class DepositTransaction(models.Model):
 
 class TransferTransaction(models.Model):
     from_account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    bank_name = models.CharField(max_length=30,null=False, default="bank_name")
+    country = models.CharField(max_length=30,null=False,default="country")
+    to_account_number = models.CharField(max_length=30,null=False,default="to_account_number")
+    to_account_name = models.CharField(max_length=30,null=False,default="to_account_name")
     initialized_on = models.DateField(auto_now_add=True)
     amount = models.IntegerField(null=False)
     status = models.CharField(max_length=25, default='pending')

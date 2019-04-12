@@ -1,0 +1,62 @@
+{% extends 'customer/basetemplate.html' %}
+{% block page_international__active%}active{% endblock %}
+{% block page_transaction_active%}active{% endblock %}
+{% block body %}
+<!-- ============================================================== -->
+<!-- basic form  -->
+<!-- ============================================================== -->
+<div class="container-fluid dashboard-content">
+  <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="section-block" id="basicform">
+              <h3 class="section-title">Enter Transaction Details</h3>
+              <p><strong>All information</strong> given here is credential and not open for access to anyone</p>
+          </div>
+          <div class="card">
+              <h5 class="card-header">Transaction Form</h5>
+              <div class="card-body">
+                  <form action="" method="post" >
+                    {% csrf_token %}
+                      <div class="form-group mb-5">
+                          <label for="cbank_name" class="col-form-label">Destination Bank Name</label>
+                          <input id="cbank_name" name="bank_name" type="text" placeholder="Bank Name" required class="form-control">
+                      </div>
+                      <div class="form-group mb-5">
+                          <label for="ccountry">Destination Country</label>
+                          <select id="ccountry" name="country" placeholder="Country Name" required class="form-control">
+                            <option value="">Country Name</option>
+                            <option value="Country 1">Country 1</option>
+                            <option value="Country 2">Country 2</option>
+                            <option value="Country 3">Country 3</option>
+                            <option value="Country 4">Country 4</option>
+                          </select>
+                      </div>
+                      <div class="form-group mb-5 ">
+                          <label for="caccount_name" class="col-form-label">Account Name</label>
+                          <input id="caccount_name" type="text" name="account_name" class="form-control" required placeholder="Account Name">
+                      </div>
+                      <div class="form-group mb-5">
+                          <label for="caccount_number">Account Number</label>
+                          <input id="caccount_number" type="text" name="account_number" placeholder="Account Number" required class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="camount">Amount To Transact</label>
+                        <div class="input-group mb-5">
+                          <span class="input-group-prepend" >
+                            <span class="input-group-text">$
+                            </span>
+                          </span>
+                          <input id="camount" type="number" name="amount" placeholder="Amount" required class="form-control">
+                        </div>
+                      </div>
+                      <button type="submit" class=" btn btn-rounded btn-success" ><i class="mdi mdi-arrow-top-right"></i> Initialize Transaction</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- end basic form  -->
+
+</div>
+{% endblock%}
