@@ -66,7 +66,7 @@
                   <p>Amount:</p>
                 </div><br>
                 <div class="col-sm-12 centered col-xs-9">
-                  <h2>${{DepositSum.Deposit_sum}}</h2>
+                  <h2>${{DepositSum}}</h2>
                 </div>
               </div>
             </div>
@@ -143,9 +143,9 @@
                     </td>
                   </tr>
                   {% empty %}
-                  <tr>
-                    <td class="centered" >No pending transactions yet!!</td>
-                  </tr>
+                <tr class="odd">
+                  <td valign="top" colspan="6" class="dataTables_empty">No Records yet</td>
+                </tr>
                   {%endfor %}
 
                 </tbody>

@@ -20,9 +20,10 @@ def generate_random_password():
 def index(request):
     if request.method=='GET':
         context = {}
-        context['DepositSum'] = DepositTransaction.objects.aggregate(Deposit_sum=Sum('amount'))
-        context['Customer_count'] = Account.objects.all.count()
-        context['transactions_init']= TransferTransaction.objects.all.count()
+        Deposit_sum = DepositTransaction.objects.aggregate(Deposit_sum=Sum('amount'))['Deposit_sum']
+        context['DepositSum'] = Deposit_sum if Deposit_sum is not None else 0
+        context['Customer_count'] = Account.objects.count()
+        context['transactions_init']= TransferTransaction.objects.count()
         context['pending_transactions'] = TransferTransaction.objects.filter(status='pending')
         return render(request,'sysadmin/index.html',context)
 
