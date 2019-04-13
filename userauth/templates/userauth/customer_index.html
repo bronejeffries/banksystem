@@ -40,6 +40,7 @@
               WELCOME TO ONLINE BANKING, ACCOUNT HOLDER
               <span class="splash-description">Enter your credentials to continue</span></div>
             <div class="card-body">
+                {% include 'userauth/partials/partialmessage.html' %}
                 <form method="post" action="{% url 'userauth:customerlogin' %}">
                   {% csrf_token %}
                     <div class="form-group">

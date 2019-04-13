@@ -40,6 +40,7 @@
               WELCOME
               <span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
+              {% include 'userauth/partials/partialmessage.html' %}
                 <form method="post" action="{% url 'userauth:admin_index' %}">
                   {% csrf_token %}
                     <div class="form-group">

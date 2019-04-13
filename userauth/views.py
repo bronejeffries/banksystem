@@ -41,13 +41,13 @@ def customerlogin(request):
                     # redirect to corresponding view function
             if password_obj:
                 login(request,user)
+                messages.info(request,"The password you used is just temporary<br>please set a new one")
                 return HttpResponseRedirect(reverse('userauth:user_set_password'))
             else:
                 login(request,user)
-                print('user logined in successfully')
                 return HttpResponseRedirect(reverse('customer:index'))
-
         else:
+            messages.warning(request,"Wrong credentials!")
             return HttpResponseRedirect(reverse('userauth:customerindex'))
     else:
         raise Exception("method not allowed")
@@ -65,11 +65,13 @@ def setpassword(request):
                 user.set_password(new_password)
                 user.save()
                 login(request,user)
+                messages.success(request,"Password changed successfully!")
                 return HttpResponseRedirect(reverse('customer:index'))
             else:
-                print('no password set')
+                messages.warning(request,"Password cannot be empty!")
                 return HttpResponseRedirect(reverse('userauth:user_set_password'))
         else:
+            messages.warning(request,"session expired")
             return HttpResponseRedirect(reverse('userauth:customerindex'))
 
 
@@ -85,6 +87,7 @@ def admin_index(request):
             login(request,user)
             return HttpResponseRedirect(reverse('sysadmin:index'))
         else:
+            messages.warning(request,"Wrong credentials!")
             return HttpResponseRedirect(reverse('userauth:admin_index'))
 
 def add_admin(request):
