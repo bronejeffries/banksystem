@@ -66,7 +66,7 @@
                   <p>Amount:</p>
                 </div><br>
                 <div class="col-sm-12 centered col-xs-9">
-                  <h2>$0</h2>
+                  <h2>${{DepositSum.Deposit_sum}}</h2>
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@
               </div>
               <h1 class="mt"><i class="fa fa-users fa-3x"></i></h1>
               <p> <h1>
-                0
+                {{Customer_count}}
               </h1></p>
             </div>
             <!--  /darkblue panel -->
@@ -95,7 +95,7 @@
               <div class="chart mt">
                 <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
               </div>
-              <p class="mt"><b> <h1>0</h1> </b></p>
+              <p class="mt"><b> <h1>{{transactions_init}}</h1> </b></p>
             </div>
           </div>
           <!-- /col-md-4 -->
@@ -118,8 +118,9 @@
                 <hr>
                 <thead>
                   <tr>
-                    <th><i class="fa fa-bullhorn"></i>Account Name</th>
-                    <th class="hidden-phone"><i class="fa fa-question-circle"></i>Account No.</th>
+                    <th><i class="fa fa-bullhorn"></i>Account Name (to)</th>
+                    <th class="hidden-phone"><i class="fa fa-question-circle"></i>Account No. (to)</th>
+                    <th class="hidden-phone"><i class="fa fa-question-circle"></i>Country (to)</th>
                     <th><i class="fa fa-calendar"></i> Initialized on</th>
                     <th><i class=" fa fa-bookmark"></i>Amount</th>
                     <th><i class=" fa fa-edit"></i>Status</th>
@@ -127,42 +128,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for pending in pending_transactions %}
                   <tr>
                     <td>
-                      <a href="basic_table.html#">Company Ltd</a>
+                      <a href="basic_table.html#">{{pending.to_account_name}}</a>
                     </td>
-                    <td class="hidden-phone">1200309900933</td>
-                    <td>March,23,2019 </td>
-                    <td>12000.00$ </td>
-                    <td><span class="label label-info label-mini">pending</span></td>
+                    <td class="hidden-phone">{{pending.to_account_number}}</td>
+                    <td class="hidden-phone">{{pending.country}}</td>
+                    <td>{{pending.initialized_on}}</td>
+                    <td>${{pending.amount}} </td>
+                    <td><span class="label label-warning label-mini">pending</span></td>
                     <td>
                       <button class="btn btn-danger btn-xs"><i class="fa fa-retweet"></i> reverse</button>
                     </td>
                   </tr>
+                  {% empty %}
                   <tr>
-                    <td>
-                      <a href="basic_table.html#">Company Ltd</a>
-                    </td>
-                    <td class="hidden-phone">1200309900933</td>
-                    <td>March,23,2019 </td>
-                    <td>12000.00$ </td>
-                    <td><span class="label label-info label-mini">pending</span></td>
-                    <td>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-retweet"></i> reverse</button>
-                    </td>
+                    <td class="centered" >No pending transactions yet!!</td>
                   </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Company Ltd</a>
-                    </td>
-                    <td class="hidden-phone">1200309900933</td>
-                    <td>March,23,2019 </td>
-                    <td>12000.00$ </td>
-                    <td><span class="label label-info label-mini">pending</span></td>
-                    <td>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-retweet"></i> reverse</button>
-                    </td>
-                  </tr>
+                  {%endfor %}
+
                 </tbody>
               </table>
             </div>

@@ -3,11 +3,14 @@ import random
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from userauth.models import Defaultpasswords
+from customer.models import DepositTransaction, Account, TransferTransaction
 from userauth.serializers import UserSerializer
 from customer.serializers import ProfileSerializer, AccountSerializer, DepositTransactionSerializer
 from django.contrib.auth.models import User
 from customer.models import Account
 from django.contrib import messages
+from django.db.models import Count , Sum , Avg, Q, F, Min
+from django.db.models.functions import TruncMonth, TruncYear
 
 # Create your views here.
 
@@ -16,7 +19,12 @@ def generate_random_password():
 
 def index(request):
     if request.method=='GET':
-        return render(request,'sysadmin/index.html',{})
+        context = {}
+        context['DepositSum'] = DepositTransaction.objects.aggregate(Deposit_sum=Sum('amount'))
+        context['Customer_count'] = Account.objects.all.count()
+        context['transactions_init']= TransferTransaction.objects.all.count()
+        context['pending_transactions'] = TransferTransaction.objects.filter(status='pending')
+        return render(request,'sysadmin/index.html',context)
 
 def alltransactions(request):
     if request.method == 'GET':
