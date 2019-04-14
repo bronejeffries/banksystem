@@ -99,7 +99,7 @@ $(document).ready(function() {
                 <th>Account Name(from)</th>
                 <th>Account Number(from)</th>
                 <th>Country(to)</th>
-                <th>Account Number(to)</th>
+                <th>Account Name(to)</th>
                 <th>Account Number(to)</th>
                 <th class="hidden-phone">Initialized On</th>
                 <th class="hidden-phone">Amount</th>
@@ -107,16 +107,18 @@ $(document).ready(function() {
               </tr>
             </thead>
             <tbody>
-
-              <tr class="gradeU">
-                <td>Other browsers</td>
-                <td>All others</td>
-                <td>Uganda</td>
-                <td></td>
-                <td class="hidden-phone">-</td>
-                <td class="center hidden-phone">-</td>
-                <td class="center hidden-phone">U</td>
+              {% for transaction in transactions %}
+              <tr class="{% if transaction.status == 'pending' %}gradeA{% else %}gradeX{% endif %}">
+                <td>{{transaction.from_account.account_name}}</td>
+                <td>{{transaction.from_account.account_number}}</td>
+                <td>{{transaction.country}}</td>
+                <td>{{transaction.to_account_name}}</td>
+                <td class="hidden-phone">{{transaction.to_account_number}}</td>
+                <td class="center hidden-phone">{{transaction.initialized_on}}</td>
+                <td class="center hidden-phone">${{transaction.amount}}</td>
+                <td class="center hidden-phone">{{transaction.status}}</td>
               </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>

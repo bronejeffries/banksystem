@@ -4,6 +4,7 @@ from django.urls import reverse
 from .serializers import AdminuserSerializer
 from django.contrib.auth import authenticate, login, logout
 from .models import Defaultpasswords
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 # Create your views here.
@@ -52,6 +53,14 @@ def customerlogin(request):
     else:
         raise Exception("method not allowed")
 
+def customer_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('userauth:customerindex'))
+
+def admin_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('userauth:admin_index'))
+
 def setpassword(request):
     if request.method == 'GET':
         return render(request,'userauth/user_set_password.html',{})
@@ -90,6 +99,7 @@ def admin_index(request):
             messages.warning(request,"Wrong credentials!")
             return HttpResponseRedirect(reverse('userauth:admin_index'))
 
+@login_required(login_url='sys/admin/')
 def add_admin(request):
     if request.method == 'POST':
         username = request.POST['username']

@@ -3,16 +3,21 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .serializers import TransferTransactionSerializer as TTS
 from .models import Account
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
+@login_required(login_url='/')
 def index(request):
     if request.method=='GET':
         return render(request,'customer/index.html',{})
 
+@login_required(login_url='/')
 def viewpendingtransactions(request):
     if request.method == 'GET':
         return render(request, 'customer/viewpendingtransactions.html',{})
 
+@login_required(login_url='/')
 def maketransactions(request):
     if request.method=='GET':
         return render(request,'customer/maketransactions.html',{})
@@ -30,13 +35,17 @@ def maketransactions(request):
                 if check_sufficient_balance(account = useraccount, amount_threshold = data['amount']):
                     new_transaction_record = TTS(data=data)
                     if new_transaction_record.is_valid():
-                        reduce_account_balance(pk=useraccount.id, amount= data['amount'] )
                         new_transaction_record.save()
+                        reduce_account_balance(pk=useraccount.id, amount= data['amount'] )
+                        messages.success(request,"successful transaction")
                         return HttpResponseRedirect(reverse('customer:maketransactions'))
                     else:
+                        messages.warning(request,"something went wrong!")
                         print("transaction creation errors", new_transaction_record.errors)
+                        return HttpResponseRedirect(reverse('customer:maketransactions'))
                 else:
                     print('balance error','insufficient balance')
+                    messages.warning(request,"unsuccessful Transaction<br>insufficient balance")
                     return HttpResponseRedirect(reverse('customer:maketransactions'))
             else:
                 print('data error', 'something went wrong')

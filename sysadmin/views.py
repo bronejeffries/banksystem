@@ -11,12 +11,14 @@ from customer.models import Account
 from django.contrib import messages
 from django.db.models import Count , Sum , Avg, Q, F, Min
 from django.db.models.functions import TruncMonth, TruncYear
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def generate_random_password():
     return random.randint(1, 1002)
 
+@login_required(login_url='/sys/admin/')
 def index(request):
     if request.method=='GET':
         context = {}
@@ -27,14 +29,21 @@ def index(request):
         context['pending_transactions'] = TransferTransaction.objects.filter(status='pending')
         return render(request,'sysadmin/index.html',context)
 
+@login_required(login_url='/sys/admin/')
 def alltransactions(request):
     if request.method == 'GET':
-        return render(request, 'sysadmin/alltransactions.html',{})
+        context={}
+        context['transactions'] = TransferTransaction.objects.all()
+        return render(request, 'sysadmin/alltransactions.html',context)
 
+@login_required(login_url='/sys/admin/')
 def viewaccounts(request):
     if request.method=='GET':
-        return render(request,'sysadmin/viewaccounts.html',{})
+        context={}
+        context['customers'] = Account.objects.all()
+        return render(request,'sysadmin/viewaccounts.html',context)
 
+@login_required(login_url='/sys/admin/')
 def add_customer(request):
     if request.method == 'GET':
         return render(request, 'sysadmin/addcustomer.html',{})
@@ -112,6 +121,7 @@ def get_account(account_name, account_number):
     else:
         return account
 
+@login_required(login_url='/sys/admin/')
 def makedeposit(request):
     if request.method== 'GET':
         return render(request, 'sysadmin/makedeposit.html',{})
