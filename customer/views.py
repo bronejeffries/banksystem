@@ -10,12 +10,30 @@ from django.contrib import messages
 @login_required(login_url='/')
 def index(request):
     if request.method=='GET':
-        return render(request,'customer/index.html',{})
+        context={}
+        user_account = find_user_account(request)
+        if user_account:
+            pending_transactions = user_account.transfertransaction_set.filter(status='pending')
+            deposits = user_account.deposittransaction_set.all()
+            context['available_amount'] = user_account.available_amount
+            context['pending_transactions'] = pending_transactions
+            context['deposits'] = deposits
+            return render(request,'customer/index.html',context)
+        else:
+            HttpResponseRedirect(reverse('userauth:customer_logout'))
+
 
 @login_required(login_url='/')
 def viewpendingtransactions(request):
     if request.method == 'GET':
-        return render(request, 'customer/viewpendingtransactions.html',{})
+        context={}
+        user_account = find_user_account(request)
+        if user_account:
+            pending_transactions = useraccount.transfertransaction_set.filter(status='pending')
+            context['pending_transactions'] = pending_transactions
+            return render(request, 'customer/viewpendingtransactions.html',context)
+        else:
+            return HttpResponseRedirect(reverse('userauth:customer_logout'))
 
 @login_required(login_url='/')
 def maketransactions(request):
@@ -50,7 +68,9 @@ def maketransactions(request):
             else:
                 print('data error', 'something went wrong')
                 return HttpResponseRedirect(reverse('customer:maketransactions'))
-        return HttpResponseRedirect(reverse('customer:maketransactions'))
+        else:
+            messages.warning(request,"No account details Found for this session")
+            return HttpResponseRedirect(reverse('customer:maketransactions'))
 
 def get_account_by_id(pk):
     account = None
@@ -60,6 +80,15 @@ def get_account_by_id(pk):
         return False
     else:
         return account
+
+def find_user_account(request):
+    user_account = None
+    try:
+        user_account = request.user.account
+    except RelatedObjectDoesNotExist:
+        user_account = False
+    finally:
+        return user_account
 
 
 def reduce_account_balance(pk=None, amount=None):
