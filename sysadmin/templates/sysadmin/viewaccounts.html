@@ -103,6 +103,7 @@ active
                   <th>Last Name</th>
                   <th>Middle name</th>
                   <th>First Name</th>
+                  <th>Email</th>
                   <th class="hidden-phone">Account Type</th>
                   <th class="hidden-phone">Account Name</th>
                   <th class="hidden-phone">Account No.</th>
@@ -121,6 +122,7 @@ active
                     {%endif%}
                   </td>
                   <td>{{customer.customer.profile.firstname}}</td>
+                  <td>{{customer.customer.email}}</td>
                   <td class="hidden-phone">{{customer.account_type}}</td>
                   <td class="center hidden-phone">{{customer.account_name}}</td>
                   <td class="center hidden-phone">{{customer.account_number}}</td>

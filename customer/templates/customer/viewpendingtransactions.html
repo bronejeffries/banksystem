@@ -30,18 +30,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                  Stanbic
-                                </td>
-                                <td>Uganda</td>
-                                <td>Kiweewa Micheal </td>
-                                <td>id000001045 </td>
-                                <td>$80.00</td>
-                                <td>march,2,2019</td>
-                                <td><span class="badge-dot badge-brand mr-1"></span>pending</td>
-                            </tr>
+                          {% for pending_transaction in pending_transactions %}
+                          <tr>
+                              <td>{{forloop.counter}}</td>
+                              <td>
+                                {{pending_transaction.bank_name}}
+                              </td>
+                              <td>{{pending_transaction.country}}</td>
+                              <td>{{pending_transaction.account_name}} </td>
+                              <td>{{pending_transaction.account_number}}</td>
+                              <td>${{pending_transaction.amount}}</td>
+                              <td>{{pending_transaction.initialized_on}}</td>
+                              <td><span class="badge-dot badge-brand mr-1"></span>{{pending_transaction.status}}</td>
+                          </tr>
+                          {% empty %}
+                          <tr>
+                              <td colspan="8">No transactions records yet</td>
+                          </tr>
+                          {% endfor %}
+                          {% if pending_transactions.length > 0 %}
+                          <tr>
+                              <td colspan="9"><a href="{% url 'customer:viewpending' %}" class="btn btn-outline-light float-right">View All</a></td>
+                          </tr>
+                          {% endif %}
                         </tbody>
                     </table>
                 </div>

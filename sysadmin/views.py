@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.db.models import Count , Sum , Avg, Q, F, Min
 from django.db.models.functions import TruncMonth, TruncYear
 from django.contrib.auth.decorators import login_required
+from userauth.decorators import permission_check_admin
 
 # Create your views here.
 
@@ -19,6 +20,7 @@ def generate_random_password():
     return random.randint(1, 1002)
 
 @login_required(login_url='/sys/admin/')
+@permission_check_admin
 def index(request):
     if request.method=='GET':
         context = {}
@@ -30,6 +32,7 @@ def index(request):
         return render(request,'sysadmin/index.html',context)
 
 @login_required(login_url='/sys/admin/')
+@permission_check_admin
 def alltransactions(request):
     if request.method == 'GET':
         context={}
@@ -37,6 +40,7 @@ def alltransactions(request):
         return render(request, 'sysadmin/alltransactions.html',context)
 
 @login_required(login_url='/sys/admin/')
+@permission_check_admin
 def viewaccounts(request):
     if request.method=='GET':
         context={}
@@ -44,6 +48,7 @@ def viewaccounts(request):
         return render(request,'sysadmin/viewaccounts.html',context)
 
 @login_required(login_url='/sys/admin/')
+@permission_check_admin
 def add_customer(request):
     if request.method == 'GET':
         return render(request, 'sysadmin/addcustomer.html',{})
@@ -122,6 +127,7 @@ def get_account(account_name, account_number):
         return account
 
 @login_required(login_url='/sys/admin/')
+@permission_check_admin
 def makedeposit(request):
     if request.method== 'GET':
         return render(request, 'sysadmin/makedeposit.html',{})

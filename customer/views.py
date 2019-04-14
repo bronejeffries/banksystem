@@ -29,7 +29,7 @@ def viewpendingtransactions(request):
         context={}
         user_account = find_user_account(request)
         if user_account:
-            pending_transactions = useraccount.transfertransaction_set.filter(status='pending')
+            pending_transactions = user_account.transfertransaction_set.filter(status='pending')
             context['pending_transactions'] = pending_transactions
             return render(request, 'customer/viewpendingtransactions.html',context)
         else:
