@@ -13,6 +13,7 @@ from django.db.models import Count , Sum , Avg, Q, F, Min
 from django.db.models.functions import TruncMonth, TruncYear
 from django.contrib.auth.decorators import login_required
 from userauth.decorators import permission_check_admin
+from customer.views import get_account_by_id
 
 # Create your views here.
 
@@ -157,3 +158,36 @@ def makedeposit(request):
             print('account issues', 'no account')
             messages.warning(request,'Transaction unsuccessful <br> please check the account details ')
             return HttpResponseRedirect(reverse('sysadmin:makedeposit'))
+
+
+def get_transaction_by_id(pk):
+    transaction = None;
+    try:
+        transaction = TransferTransaction.objects.get(id=pk)
+    except TransferTransaction.DoesNotExist:
+        transaction = False
+    finally:
+        return transaction
+
+@login_required(login_url='/sys/admin/')
+@permission_check_admin
+def reverse_transaction(request, pk):
+    if request.method == 'GET':
+        transaction = get_transaction_by_id(pk)
+        if transaction:
+            account = get_account_by_id(transaction.from_account.id)
+            amount_to_reverse = int(transaction.amount)
+            account.available_amount += amount_to_reverse
+            account.save()
+
+            transaction.status = "reversed"
+            transaction.save()
+
+            messages.success(request, 'Transaction reversed successfully')
+            return HttpResponseRedirect(reverse('sysadmin:index'))
+        else:
+            messages.danger(request, 'request error')
+            return HttpResponseRedirect(reverse('sysadmin:index'))
+            
+    else:
+        return HttpResponseRedirect(reverse('sysadmin:index'))

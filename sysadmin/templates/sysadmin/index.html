@@ -139,7 +139,7 @@
                     <td>${{pending.amount}} </td>
                     <td><span class="label label-warning label-mini">pending</span></td>
                     <td>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-retweet"></i> reverse</button>
+                      <button class="btn btn-danger btn-xs"><i class="fa fa-retweet"></i> <a href="{% url 'sysadmin:reverse' pending.id %}">reverse</a></button>
                     </td>
                   </tr>
                   {% empty %}
