@@ -236,6 +236,7 @@
           if (new_password.value == conf_password.value) {
             change_password_form.submit()
           }else {
+            error_password.style.display = "block"
             error_password.innerHTML = "password mismatch!!"
           }
 
