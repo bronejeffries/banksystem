@@ -9,15 +9,16 @@
       </div>
       <div class="modal-body">
         <h1 class="centered"> <i class="fa fa-plus-circle fa-3x"></i> </h1>
-        <form class="" action="{% url 'userauth:add_admin' %}" method="post">
+        <form class="" id="add_admin_form" action="{% url 'userauth:add_admin' %}" method="post">
           {% csrf_token %}
           <input type="text" name="username" placeholder="Username" autocomplete="off" required class="form-control placeholder-no-fix">
           <br>
           <input type="email" name="email" placeholder="Email" autocomplete="off" required class="form-control placeholder-no-fix">
           <br>
-          <input type="password" name="password" placeholder="Password" autocomplete="off" required class="form-control placeholder-no-fix">
+          <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required class="form-control placeholder-no-fix">
           <br>
-          <input type="password" name="confirm_password" placeholder="Confirm Password" required autocomplete="off" class="form-control placeholder-no-fix">
+          <input type="password" id="conf_password" name="confirm_password" placeholder="Confirm Password" required autocomplete="off" class="form-control placeholder-no-fix">
+          <span id="error_password" class="alert-danger"></span>
           <br>
           <div class="modal-footer centered">
             <button class="btn btn-theme03" type="submit">Add</button>
