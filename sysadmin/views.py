@@ -92,36 +92,39 @@ def add_customer(request):
         'email':email,
         'password':userpassword
         }
-        new_user = UserSerializer(data=userdata)
-        if new_user.is_valid():
-            new_user.save()
-            user_id = new_user.data['id']
-            profile_data['owner'] = user_id
-            account_data['customer'] = user_id
-            new_profile = ProfileSerializer(data=profile_data)
-            if new_profile.is_valid():
-                new_profile.save()
-                new_account = AccountSerializer(data=account_data)
-                if new_account.is_valid():
-                    new_account.save()
-                    print(userpassword)
-                    successmessage = "Customer registered successfully<br>"
-                    successmessage += "Online account credentials <br>"
-                    successmessage += "Username: "+ username + "<br>"
-                    successmessage += "Password: "+ userpassword + "<br>"
-                    messages.success(request, successmessage)
-                    return HttpResponseRedirect(reverse('sysadmin:add_customer'))
-                else:
-                    print('account creation failed',new_account.errors)
-                    messages.danger(request, "Couldnt create account!")
-                    return HttpResponseRedirect(reverse('sysadmin:add_customer'))
+        user_id = ""
+        not_created = True
+        while not_created:
+            new_user = UserSerializer(data=userdata)
+            if new_user.is_valid():
+                new_user.save()
+                user_id = new_user.data['id']
+                profile_data['owner'] = user_id
+                account_data['customer'] = user_id
+                not_created = False
             else:
-                print('profile failed', new_profile.errors)
-                messages.danger(request, 'Couldnt create profile')
+                username = userdata['username'][:-1]
+                userdata['username'] = username
+
+        new_profile = ProfileSerializer(data=profile_data)
+        if new_profile.is_valid():
+            new_profile.save()
+            new_account = AccountSerializer(data=account_data)
+            if new_account.is_valid():
+                new_account.save()
+                successmessage = "Customer registered successfully<br>"
+                successmessage += "Online account credentials <br>"
+                successmessage += "Username: "+ username + "<br>"
+                successmessage += "Password: "+ userpassword + "<br>"
+                messages.success(request, successmessage)
+                return HttpResponseRedirect(reverse('sysadmin:add_customer'))
+            else:
+                print('account creation failed',new_account.errors)
+                messages.danger(request, "Couldnt create account!")
                 return HttpResponseRedirect(reverse('sysadmin:add_customer'))
         else:
-            print('user failed',new_user.errors)
-            messages.danger(request, 'Online Registration Failed !!!' )
+            print('profile failed', new_profile.errors)
+            messages.danger(request, 'Couldnt create profile')
             return HttpResponseRedirect(reverse('sysadmin:add_customer'))
 
 def get_account(account_name, account_number):
