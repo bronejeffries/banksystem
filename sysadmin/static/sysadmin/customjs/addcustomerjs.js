@@ -35,6 +35,8 @@ $(document).ready(function(){
   },false);
 
 
+});
+
 function generate_account_number() {
   c_code ="SA"
   bank_code = '00990'
@@ -44,6 +46,3 @@ function generate_account_number() {
   let value = c_code + bank_code + checksum + account_number
   document.getElementById('caccount_number').value = value
 }
-
-
-});
