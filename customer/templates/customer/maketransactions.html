@@ -2,6 +2,8 @@
 {% block page_international__active%}active{% endblock %}
 {% block page_transaction_active%}active{% endblock %}
 {% block body %}
+
+{% load staticfiles %}
 <!-- ============================================================== -->
 <!-- basic form  -->
 <!-- ============================================================== -->
@@ -23,14 +25,8 @@
                           <input id="cbank_name" name="bank_name" type="text" placeholder="Bank Name" required class="form-control">
                       </div>
                       <div class="form-group mb-5">
-                          <label for="ccountry">Destination Country</label>
-                          <select id="ccountry" name="country" placeholder="Country Name" required class="form-control">
-                            <option value="">Country Name</option>
-                            <option value="Uganda">Uganda</option>
-                            <option value="Kenya">Kenya</option>
-                            <option value="Tanzania">Tanzania</option>
-                            <option value="South Africa">South Africa</option>
-                          </select>
+                          <label for="country">Destination Country</label>
+                          <select id="country" name="country" placeholder="Country Name" required class="form-control"></select>
                       </div>
                       <div class="form-group mb-5 ">
                           <label for="caccount_name" class="col-form-label">Account Name</label>
@@ -60,4 +56,9 @@
   <!-- end basic form  -->
 
 </div>
+<script src="{% static 'customer/assets/libs/js/countries.js' %}" charset="utf-8"></script>
+
+<script type="text/javascript">
+populateCountries("country");
+</script>
 {% endblock%}
