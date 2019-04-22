@@ -34,4 +34,16 @@ $(document).ready(function(){
 
   },false);
 
+
+function generate_account_number() {
+  c_code ="SA"
+  bank_code = '00990'
+  checksum = (Math.floor(Math.random()*98)).toString()
+  account_number = (Math.floor(Math.random()*1000) + 1000).toString()
+
+  let value = c_code + bank_code + checksum + account_number
+  document.getElementById('caccount_number').value = value
+}
+
+
 });
