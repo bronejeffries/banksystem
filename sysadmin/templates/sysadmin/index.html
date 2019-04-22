@@ -238,8 +238,12 @@
           }else {
             error_password.innerHTML = "password mismatch!!"
           }
-          
+
           new_password.addEventListener('keyup',function(event){
+            error_password.style.display = "none"
+          })
+
+          conf_password.addEventListener('keyup',function(event){
             error_password.style.display = "none"
           })
 
