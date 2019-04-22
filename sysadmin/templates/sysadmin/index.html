@@ -230,13 +230,18 @@
         let new_password = document.getElementById('password')
         let conf_password = document.getElementById('conf_password')
         let change_password_form = document.getElementById('add_admin_form')
+        let error_password = document.getElementById('error_password')
         change_password_form.addEventListener('submit',function(event) {
           event.preventDefault()
           if (new_password.value == conf_password.value) {
             change_password_form.submit()
           }else {
-            document.getElementById('error_password').innerHTML = "password mismatch!!"
+            error_password.innerHTML = "password mismatch!!"
           }
+          
+          new_password.addEventListener('keyup',function(event){
+            error_password.style.display = "none"
+          })
 
         })
 // }
