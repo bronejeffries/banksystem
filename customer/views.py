@@ -20,7 +20,7 @@ def index(request):
             context['deposits'] = deposits
             return render(request,'customer/index.html',context)
         else:
-            HttpResponseRedirect(reverse('userauth:customer_logout'))
+            return HttpResponseRedirect(reverse('userauth:customer_logout'))
 
 
 @login_required(login_url='/')
@@ -34,6 +34,17 @@ def viewpendingtransactions(request):
             return render(request, 'customer/viewpendingtransactions.html',context)
         else:
             return HttpResponseRedirect(reverse('userauth:customer_logout'))
+
+@login_required(login_url='/')
+def transactionstatements(request):
+    if request.method == 'GET':
+        context = {}
+        user_account = find_user_account(request)
+        if user_account:
+            deposit_transactions = user_account.deposittransaction_set.all()
+            context['deposit_transactions'] = deposit_transactions
+        return render(request, 'customer/transactionstatements.html',context)
+
 
 @login_required(login_url='/')
 def maketransactions(request):
@@ -95,7 +106,7 @@ def reduce_account_balance(pk=None, amount=None):
     if pk is not None and amount is not None:
         account = get_account_by_id(pk)
         if account:
-            account.available_amount -= amount
+            account.available_amount -= int(amount)
             account.save()
 
 
@@ -115,8 +126,8 @@ def get_data_From_request(account = None, request = None):
         transaction_data['from_account'] = account.id
         transaction_data['bank_name'] = request['bank_name']
         transaction_data['country'] = request['country']
-        transaction_data['account_name'] = request['account_name']
-        transaction_data['account_number'] = request['account_number']
+        transaction_data['to_account_name'] = request['account_name']
+        transaction_data['to_account_number'] = request['account_number']
         transaction_data['amount'] = request['amount']
 
         return transaction_data

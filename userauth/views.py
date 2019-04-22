@@ -68,14 +68,20 @@ def setpassword(request):
     elif request.method == 'POST':
         user = get_user(request.user.id)
         new_password = request.POST['password']
-        print(request.user.id)
+        old_password = request.POST['old_password']
         if user:
             if len(new_password) > 0:
-                user.set_password(new_password)
-                user.save()
-                login(request,user)
-                messages.success(request,"Password changed successfully!")
-                return HttpResponseRedirect(reverse('customer:index'))
+                default_password = check_if_password_default(old_password)
+                if default_password:
+                    default_password.delete()
+                    user.set_password(new_password)
+                    user.save()
+                    login(request,user)
+                    messages.success(request,"Password changed successfully!")
+                    return HttpResponseRedirect(reverse('customer:index'))
+                else:
+                    messages.warning(request, "Password does not exist")
+                    return HttpResponseRedirect(reverse('userauth:user_set_password'))
             else:
                 messages.warning(request,"Password cannot be empty!")
                 return HttpResponseRedirect(reverse('userauth:user_set_password'))

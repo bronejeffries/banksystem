@@ -113,10 +113,16 @@ def add_customer(request):
                     return HttpResponseRedirect(reverse('sysadmin:add_customer'))
                 else:
                     print('account creation failed',new_account.errors)
+                    messages.danger(request, "Couldnt create account!")
+                    return HttpResponseRedirect(reverse('sysadmin:add_customer'))
             else:
                 print('profile failed', new_profile.errors)
+                messages.danger(request, 'Couldnt create profile')
+                return HttpResponseRedirect(reverse('sysadmin:add_customer'))
         else:
             print('user failed',new_user.errors)
+            messages.danger(request, 'Online Registration Failed !!!' )
+            return HttpResponseRedirect(reverse('sysadmin:add_customer'))
 
 def get_account(account_name, account_number):
     account = None
@@ -188,6 +194,6 @@ def reverse_transaction(request, pk):
         else:
             messages.danger(request, 'request error')
             return HttpResponseRedirect(reverse('sysadmin:index'))
-            
+
     else:
         return HttpResponseRedirect(reverse('sysadmin:index'))

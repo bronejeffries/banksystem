@@ -1,0 +1,70 @@
+{% extends 'customer/basetemplate.html' %}
+{% block body %}
+<div class="container-fluid">
+    <aside class="page-aside">
+        <div class="aside-content">
+            <div class="aside-header">
+                <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse" type="button"><span class="icon"><i class="fas fa-caret-down"></i></span></button><span class="title">Credicopbank</span>
+                <p class="description" >{{request.user.profile.firstname}} {{request.user.profile.lastname}}</p>
+                <p class="description">
+                  <script>
+                    document.write(new Date())
+                  </script>
+                 </p>
+                <p class="description">Transactions Statement</p>
+            </div>
+
+        </div>
+    </aside>
+    <div class="main-content container-fluid p-0">
+      <div class="row">
+        <!-- recent pending  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
+                <h5 class="card-header">Statement</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="bg-light">
+                                <tr class="border-0">
+                                    <th class="border-0">#</th>
+                                    <th class="border-0">Transaction Type</th>
+                                    <th class="border-0">By</th>
+                                    <th class="border-0">Account No.</th>
+                                    <th class="border-0">Account Type</th>
+                                    <th class="border-0">Amount</th>
+                                    <th class="border-0">Initialized On</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {% for deposit_transaction in deposit_transactions %}
+                              <tr>
+                                  <td>{{forloop.counter}}</td>
+                                  <td>
+                                    Deposit
+                                  </td>
+                                  <td>Credicopbank</td>
+                                  <td>{{deposit_transaction.account.account_number}}</td>
+                                  <td>{{deposit_transaction.account.account_type}}</td>
+                                  <td>${{deposit_transaction.amount}}</td>
+                                  <td>{{deposit_transaction.created_on}}</td>
+                              </tr>
+                              {% empty %}
+                              <tr>
+                                  <td colspan="8">No transactions records yet</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+    <!-- end recent pending  -->
+
+      </div>
+    </div>
+</div>
+{% endblock %}
