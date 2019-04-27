@@ -119,12 +119,14 @@ def add_customer(request):
                 messages.success(request, successmessage)
                 return HttpResponseRedirect(reverse('sysadmin:add_customer'))
             else:
+                delete_user = delete_user_on_fail(profile_data['owner'])
                 print('account creation failed',new_account.errors)
-                messages.warning(request, "Couldnt create account!")
+                messages.warning(request, "Couldnt create account!<br>registration failed")
                 return HttpResponseRedirect(reverse('sysadmin:add_customer'))
         else:
+            delete_user = delete_user_on_fail(profile_data['owner'])
             print('profile failed', new_profile.errors)
-            messages.warning(request, 'Couldnt create profile')
+            messages.warning(request, 'Couldnt create profile<br>registration failed')
             return HttpResponseRedirect(reverse('sysadmin:add_customer'))
 
 def get_account(account_name, account_number):
@@ -200,3 +202,14 @@ def reverse_transaction(request, pk):
 
     else:
         return HttpResponseRedirect(reverse('sysadmin:index'))
+
+
+def delete_user_on_fail(id):
+    deleted_user = False
+    try:
+        user = User.objects.get(id=id)
+        user.delete()
+        deleted_user = True
+        return deleted_user
+    except User.DoesNotExist:
+        return deleted_user
