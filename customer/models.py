@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=120, null=False)
-    middlename = models.CharField(max_length=120,null=True)
+    middlename = models.CharField(max_length=120,null=True,blank=True)
     lastname = models.CharField(max_length=120, null=False)
     date_of_birth = models.DateField()
 
