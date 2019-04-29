@@ -14,47 +14,49 @@
             <h5 class="card-header">Pending Transactions</h5>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead class="bg-light">
-                            <tr class="border-0">
-                                <th class="border-0">#</th>
-                                <th class="border-0">Bank Name</th>
-                                <th class="border-0">Country</th>
-                                <th class="border-0">Account Name</th>
-                                <th class="border-0">Account Number</th>
-                                <th class="border-0">Amount</th>
-                                <th class="border-0">Initialized On</th>
-                                <!-- <th class="border-0">Order Time</th>
-                                <th class="border-0">Customer</th> -->
-                                <th class="border-0">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          {% for pending_transaction in pending_transactions %}
-                          <tr>
-                              <td>{{forloop.counter}}</td>
-                              <td>
-                                {{pending_transaction.bank_name}}
-                              </td>
-                              <td>{{pending_transaction.country}}</td>
-                              <td>{{pending_transaction.to_account_name}} </td>
-                              <td>{{pending_transaction.to_account_number}}</td>
-                              <td>${{pending_transaction.amount}}</td>
-                              <td>{{pending_transaction.initialized_on}}</td>
-                              <td><span class="badge-dot badge-brand mr-1"></span>{{pending_transaction.status}}</td>
+                  {% if pending_transactions.length > 0 %}
+                  <table class="table">
+                      <thead class="bg-light">
+                          <tr class="border-0">
+                              <th class="border-0">#</th>
+                              <th class="border-0">Bank Name</th>
+                              <th class="border-0">Country</th>
+                              <th class="border-0">Account Name</th>
+                              <th class="border-0">Account Number</th>
+                              <th class="border-0">Amount</th>
+                              <th class="border-0">Initialized On</th>
+                              <!-- <th class="border-0">Order Time</th>
+                              <th class="border-0">Customer</th> -->
+                              <th class="border-0">Status</th>
                           </tr>
-                          {% empty %}
-                          <tr>
-                              <td colspan="8">No transactions records yet</td>
-                          </tr>
-                          {% endfor %}
-                          {% if pending_transactions.length > 0 %}
-                          <tr>
-                              <td colspan="9"><a href="{% url 'customer:viewpending' %}" class="btn btn-outline-light float-right">View All</a></td>
-                          </tr>
-                          {% endif %}
-                        </tbody>
-                    </table>
+                      </thead>
+                      <tbody>
+                        {% for pending_transaction in pending_transactions %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>
+                              {{pending_transaction.bank_name}}
+                            </td>
+                            <td>{{pending_transaction.country}}</td>
+                            <td>{{pending_transaction.to_account_name}} </td>
+                            <td>{{pending_transaction.to_account_number}}</td>
+                            <td>${{pending_transaction.amount}}</td>
+                            <td>{{pending_transaction.initialized_on}}</td>
+                            <td><span class="badge-dot badge-brand mr-1"></span>{{pending_transaction.status}}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                  </table>
+                  {% else %}
+
+                  <div class="alert alert-warning fade show" role="alert">
+                    <strong>
+                      No Transaction records yet
+                    </strong>
+                  </div>
+
+                  {% endif %}
+
                 </div>
             </div>
         </div>
