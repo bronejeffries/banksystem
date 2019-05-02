@@ -1,6 +1,9 @@
 {% extends 'customer/basetemplate.html' %}
 {% block body %}
-<div class="container-fluid">
+<div class="float-right">
+       <button class="btn btn-rounded btn-danger" id="print_button">print</button>
+</div>
+<div id="printable" class="container-fluid">
     <aside class="page-aside">
         <div class="aside-content">
             <div class="aside-header">
@@ -68,4 +71,19 @@
       </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+<script type="text/javascript">
+
+let doc = new jsPDF('p','pt','a4');
+
+document.getElementById('print_button').addEventListener('click',function(){
+  doc.addHTML(document.getElementById('printable').innerHTML,function() {
+      doc.save('Mystatement.pdf');
+})
+
+});
+
+</script>
 {% endblock %}
