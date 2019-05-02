@@ -76,9 +76,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 <script type="text/javascript">
 
-let doc = new jsPDF('p','pt','a4');
-
+let doc = new jsPDF('p','pt','a4')
 document.getElementById('print_button').addEventListener('click',function(){
+  console.log("print out function");
   doc.addHTML(document.getElementById('printable').innerHTML,function() {
       doc.save('Mystatement.pdf');
 })
