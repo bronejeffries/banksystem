@@ -5,7 +5,9 @@
         <div class="aside-content">
             <div class="aside-header">
                 <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse" type="button"><span class="icon"><i class="fas fa-caret-down"></i></span></button><span class="title">Credicopbank</span>
-                <p class="description" >{{request.user.profile.firstname}} {{request.user.profile.lastname}}</p>
+                <p class="description" >{{request.user.account.account_name}}</p>
+                <p class="description" >{{request.user.account.account_number}}</p>
+                <p class="description" >{{request.user.account.account_type}}</p>
                 <p class="description">
                   <script>
                     document.write(new Date())
@@ -29,12 +31,11 @@
                             <thead class="bg-light">
                                 <tr class="border-0">
                                     <th class="border-0">#</th>
-                                    <th class="border-0">Type</th>
-                                    <th class="border-0">By</th>
-                                    <th class="border-0">Account No.</th>
-                                    <th class="border-0">Account Type</th>
-                                    <th class="border-0">Amount</th>
-                                    <th class="border-0">Initialized On</th>
+                                    <th class="border-0">Date</th>
+                                    <th class="border-0">Details</th>
+                                    <th class="border-0">Credit</th>
+                                    <th class="border-0">Debit</th>
+                                    <th class="border-0">Balance</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,13 +43,13 @@
                               <tr>
                                   <td>{{forloop.counter}}</td>
                                   <td>
-                                    Deposit
+                                    {{deposit_transaction.created_on}}
                                   </td>
-                                  <td>Credicopbank</td>
-                                  <td>{{deposit_transaction.account.account_number}}</td>
-                                  <td>{{deposit_transaction.account.account_type}}</td>
+                                  <td>Deposit</td>
                                   <td>${{deposit_transaction.amount}}</td>
-                                  <td>{{deposit_transaction.created_on}}</td>
+                                  <td>   -  </td>
+                                  <td>{{deposit_transaction.account_balance_on_deposit}}</td>
+                                  <td></td>
                               </tr>
                               {% empty %}
                               <tr>

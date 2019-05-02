@@ -152,7 +152,9 @@ def makedeposit(request):
             amount = request.POST['amount']
             deposit_record_data = {
             'account':account.id,
-            'amount':amount
+            'amount':amount,
+            #track account balance on deposit
+            'account_balance_on_deposit':(int(amount)+int(account.available_amount))
             }
             new_deposit_record = DepositTransactionSerializer(data=deposit_record_data)
             if new_deposit_record.is_valid():
