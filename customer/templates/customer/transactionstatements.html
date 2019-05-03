@@ -1,12 +1,11 @@
 {% extends 'customer/basetemplate.html' %}
+{% block printbtn %}
+<button class="btn btn-rounded btn-sucess" id="print_button">
+  print
+</button>
+{% endblock  %}
+
 {% block body %}
-<div class="container-fluid">
-  <div>
-       <button class="btn btn-rounded btn-sucess" id="print_button">
-         print
-       </button>
-  </div>
-</div>
 <div id="printable" class="container-fluid">
     <aside class="page-aside">
         <div class="aside-content">
