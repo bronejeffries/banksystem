@@ -129,6 +129,10 @@ def get_data_From_request(account = None, request = None):
         transaction_data['to_account_name'] = request['account_name']
         transaction_data['to_account_number'] = request['account_number']
         transaction_data['amount'] = request['amount']
+        transaction_data['branch_code'] = request['branch_code']
+        transaction_data['swift_code'] = request['swift_code']
+        transaction_data['reason'] = request['reason']
+        transaction_data['address'] = request['address']
 
         return transaction_data
     else:
