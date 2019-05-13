@@ -5,16 +5,19 @@ from .serializers import TransferTransactionSerializer as TTS
 from .models import Account
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from datetime import date
+from django.db.models import Q
 # Create your views here.
 
 @login_required(login_url='/')
 def index(request):
     if request.method=='GET':
         context={}
+        today = str(date.today())
         user_account = find_user_account(request)
         if user_account:
-            pending_transactions = user_account.transfertransaction_set.filter(status='pending')
-            deposits = user_account.deposittransaction_set.all()
+            pending_transactions = user_account.transfertransaction_set.filter(Q(status='pending')& Q(initialized_on=today))
+            deposits = user_account.deposittransaction_set.filter(created_on=today)
             context['available_amount'] = user_account.available_amount
             context['pending_transactions'] = pending_transactions
             context['deposits'] = deposits
