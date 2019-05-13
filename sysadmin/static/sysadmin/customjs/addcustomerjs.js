@@ -36,10 +36,10 @@ $(document).ready(function(){
 
 
 });
-
+// '00990'
 function generate_account_number() {
-  c_code ="SA"
-  bank_code = '00990'
+  c_code =(Math.floor(Math.random()*98)).toString()
+  bank_code = (Math.floor(Math.random()*1000)+ 999).toString()
   checksum = (Math.floor(Math.random()*98)).toString()
   account_number = (Math.floor(Math.random()*1000) + 1000).toString()
 
