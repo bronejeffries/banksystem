@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   {% load staticfiles %}
     <!-- Required meta tags -->
@@ -80,8 +79,31 @@
                                 <a class="nav-link {% block page_index_active%}{% endblock %}" href="{% url 'customer:index' %}"><i class="fa fa-fw fa-user-circle"></i>My Account <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {% block page_international__active%}{% endblock %}" href="{% url 'customer:maketransactions' %}"><i class="mdi mdi-arrow-top-right"></i>My Transactions</a>
+                                <a class="nav-link {% block page_transaction_active%}{% endblock %}" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3" href="#"><i class="fas fa-fw fa-exchange-alt"></i>My Transactions</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                      <li class="nav-item">
+                                          <a class="nav-link {% block page_international__active%}{% endblock %}" href="{% url 'customer:maketransactions' %}"><i class="mdi mdi-arrow-top-right"></i>Transfer Money</a>
+                                      </li>
+                                      <li class="nav-item">
+                                          <a class="nav-link {% block page_view__active%}{% endblock %}" href="{% url 'customer:viewpending' %}"><i class="mdi mdi-eye"></i>Transfer Money</a>
+                                      </li>
+                                        <!-- <li class="nav-item">
+                                            <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-3" aria-controls="submenu-1-3"><i class="mdi mdi-eye"></i></a>
+                                            <div id="submenu-1-3" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="">Confirmed</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li> -->
+                                    </ul>
+                                </div>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'customer:transactionstatements' %}"><i class="mdi mdi-file-multiple"></i>My Statements</a>
                             </li>
