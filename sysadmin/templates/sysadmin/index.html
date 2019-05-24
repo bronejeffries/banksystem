@@ -1,10 +1,16 @@
 
 {% extends 'sysadmin/base.html' %}
 
+{% block external_js %}
+<script type="text/javascript">
+var amount = document.getElementById("de_sum")
+amount.innerHTML = parseInt(amount.innerHTML).toLocaleString('en',{style:'currency',currency:'USD'})
+</script>
+{% endblock %}
+
 {% block dashboard_active %} active {% endblock %}
 
 {% block body%}
-
 <!--main content start-->
 <section id="main-content">
   <section class="wrapper">
@@ -56,24 +62,24 @@
         <!--custom chart end-->
         <div class="row mt">
           <!-- SERVER STATUS PANELS -->
-          <div class="col-md-4 col-sm-4 mb">
+          <div class="col-md-5 col-sm-5 mb">
             <div class="grey-panel pn donut-chart">
               <div class="grey-header">
                 <h5>TOTAL DEPOSITS</h5>
               </div>
               <div class="row">
-                <div class="col-sm-3 col-xs-6 goleft">
+                <div class="col-sm-5 col-xs-6 goleft">
                   <p>Amount:</p>
                 </div><br>
                 <div class="col-sm-12 goleft col-xs-9">
-                  <h2>${{DepositSum}}</h2>
+                  <h2 id="de_sum">{{DepositSum}}</h2>
                 </div>
               </div>
             </div>
             <!-- /grey-panel -->
           </div>
           <!-- /col-md-4-->
-          <div class="col-md-4 col-sm-4 mb">
+          <div class="col-md-3 col-sm-3 mb">
             <div class="darkblue-panel pn">
               <div class="darkblue-header">
                 <h5>CUSTOMERS</h5>

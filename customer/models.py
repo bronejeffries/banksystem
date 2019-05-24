@@ -24,7 +24,7 @@ class DepositTransaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
     account_balance_on_deposit = models.IntegerField(default=0)
-    created_on = models.DateField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
 
 class TransferTransaction(models.Model):

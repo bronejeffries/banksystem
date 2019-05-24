@@ -2,10 +2,16 @@
 
 {% block page_index_active %}active{% endblock %}
 
+{% block external_js_customer%}
+<script type="text/javascript">
+var amount = document.getElementById("av_amount")
+amount.innerHTML = parseInt(amount.innerHTML).toLocaleString('en',{style:'currency',currency:'USD'})
+</script>
+{% endblock %}
+
 {% block body %}
 
 {% load staticfiles %}
-
 <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
         <!-- ============================================================== -->
@@ -48,7 +54,7 @@
                           </div>
                             <h5 class="text-muted">Available Amount</h5>
                             <div class="metric-value d-inline-block">
-                                <h5 class="mb-1">${{available_amount}}</h5>
+                                <h5 class="mb-1" id="av_amount" >{{available_amount}}</h5>
                             </div>
                             <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                 <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1"></span>

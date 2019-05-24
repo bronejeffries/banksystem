@@ -16,8 +16,8 @@ def index(request):
         today = str(date.today())
         user_account = find_user_account(request)
         if user_account:
-            pending_transactions = user_account.transfertransaction_set.filter(Q(status='pending')& Q(initialized_on=today))
-            deposits = user_account.deposittransaction_set.filter(created_on=today)
+            pending_transactions = user_account.transfertransaction_set.filter(Q(status='pending')).order_by('-id')[:6]
+            deposits = user_account.deposittransaction_set.order_by('-id')[:6]
             context['available_amount'] = user_account.available_amount
             context['pending_transactions'] = pending_transactions
             context['deposits'] = deposits
@@ -32,7 +32,7 @@ def viewpendingtransactions(request):
         context={}
         user_account = find_user_account(request)
         if user_account:
-            pending_transactions = user_account.transfertransaction_set.filter(status='pending')
+            pending_transactions = user_account.transfertransaction_set.filter(status='pending').order_by('-id')
             context['pending_transactions'] = pending_transactions
             return render(request, 'customer/viewpendingtransactions.html',context)
         else:
