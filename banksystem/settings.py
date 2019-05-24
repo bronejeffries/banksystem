@@ -23,12 +23,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'z#-y97aza$v$+uhkyc#l@-l2)%d04zv8y7duh8nslyi46#t-nz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'customer.apps.CustomerConfig',
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'banksystem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
