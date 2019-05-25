@@ -1,14 +1,6 @@
 {% extends 'customer/basetemplate.html' %}
 
 {% block page_index_active %}active{% endblock %}
-
-{% block external_js_customer%}
-<script type="text/javascript">
-var amount = document.getElementById("av_amount")
-amount.innerHTML = parseInt(amount.innerHTML).toLocaleString('en',{style:'currency',currency:'USD'})
-</script>
-{% endblock %}
-
 {% block body %}
 
 {% load staticfiles %}
@@ -54,7 +46,7 @@ amount.innerHTML = parseInt(amount.innerHTML).toLocaleString('en',{style:'curren
                           </div>
                             <h5 class="text-muted">Available Amount</h5>
                             <div class="metric-value d-inline-block">
-                                <h5 class="mb-1" id="av_amount" >{{available_amount}}</h5>
+                                <h5 class="mb-1 amount_carrier" >{{available_amount}}</h5>
                             </div>
                             <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                 <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1"></span>
@@ -102,7 +94,7 @@ amount.innerHTML = parseInt(amount.innerHTML).toLocaleString('en',{style:'curren
                                         <td>{{pending_transaction.country}}</td>
                                         <td>{{pending_transaction.to_account_name}} </td>
                                         <td>{{pending_transaction.to_account_number}}</td>
-                                        <td>${{pending_transaction.amount}}</td>
+                                        <td class="amount_carrier">{{pending_transaction.amount}}</td>
                                         <td>{{pending_transaction.initialized_on}}</td>
                                         <td><span class="badge-dot badge-brand mr-1"></span>{{pending_transaction.status}}</td>
                                     </tr>
@@ -146,7 +138,7 @@ amount.innerHTML = parseInt(amount.innerHTML).toLocaleString('en',{style:'curren
                     {% for deposit in deposits %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>${{deposit.amount}}</td>
+                        <td class="amount_carrier">{{deposit.amount}}</td>
                         <td>{{deposit.created_on}}</td>
                     </tr>
                     {% endfor %}
@@ -164,7 +156,6 @@ amount.innerHTML = parseInt(amount.innerHTML).toLocaleString('en',{style:'curren
         </div>
     </div>
 </div>
-
             </div>
         </div>
     </div>
