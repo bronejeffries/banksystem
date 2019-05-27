@@ -5,16 +5,19 @@ from .serializers import TransferTransactionSerializer as TTS
 from .models import Account
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from datetime import date
+from django.db.models import Q
 # Create your views here.
 
 @login_required(login_url='/')
 def index(request):
     if request.method=='GET':
         context={}
+        today = str(date.today())
         user_account = find_user_account(request)
         if user_account:
-            pending_transactions = user_account.transfertransaction_set.filter(status='pending')
-            deposits = user_account.deposittransaction_set.all()
+            pending_transactions = user_account.transfertransaction_set.filter(Q(status='pending')).order_by('-id')[:6]
+            deposits = user_account.deposittransaction_set.order_by('-id')[:6]
             context['available_amount'] = user_account.available_amount
             context['pending_transactions'] = pending_transactions
             context['deposits'] = deposits
@@ -29,7 +32,7 @@ def viewpendingtransactions(request):
         context={}
         user_account = find_user_account(request)
         if user_account:
-            pending_transactions = user_account.transfertransaction_set.filter(status='pending')
+            pending_transactions = user_account.transfertransaction_set.filter(status='pending').order_by('-id')
             context['pending_transactions'] = pending_transactions
             return render(request, 'customer/viewpendingtransactions.html',context)
         else:
@@ -129,6 +132,10 @@ def get_data_From_request(account = None, request = None):
         transaction_data['to_account_name'] = request['account_name']
         transaction_data['to_account_number'] = request['account_number']
         transaction_data['amount'] = request['amount']
+        transaction_data['branch_code'] = request['branch_code']
+        transaction_data['swift_code'] = request['swift_code']
+        transaction_data['reason'] = request['reason']
+        transaction_data['address'] = request['address']
 
         return transaction_data
     else:

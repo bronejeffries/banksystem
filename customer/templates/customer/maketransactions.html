@@ -13,9 +13,9 @@
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="section-block" id="basicform">
               <div class="float-right">
-                    <a class="nav-link" href="{% url 'customer:viewpending' %}">View Transactions</a>
+                    <a class="nav-link" href="{% url 'customer:viewpending' %}">Transaction History</a>
               </div>
-              <h3 class="section-title">Enter Transaction Details</h3>
+              <h3 class="section-title">Transfer money</h3>
               <p><strong>All information</strong> given here is credential and not open for access to anyone</p>
           </div>
           <div class="card">
@@ -28,9 +28,27 @@
                           <input id="cbank_name" name="bank_name" type="text" placeholder="Bank Name" required class="form-control">
                       </div>
                       <div class="form-group mb-5">
+                          <label for="cbranch_code" class="col-form-label">Branch Code</label>
+                          <input id="cbranch_code" name="branch_code" type="text" placeholder="Branch Code" required class="form-control">
+                      </div>
+                      <div class="form-group mb-5">
+                          <label for="cswift_code" class="col-form-label">Swift Code</label>
+                          <input id="cswift_code" name="swift_code" type="text" placeholder="Swift Code" required class="form-control">
+                      </div>
+                      <div class="form-group mb-5">
+                          <label for="creason" class="col-form-label">Reason</label>
+                          <textarea name="reason" id="creason" required class="form-control" rows="8" cols="10"></textarea>
+                      </div>
+                      <div class="form-group mb-5">
                           <label for="country">Destination Country</label>
                           <select id="country" name="country" placeholder="Country Name" required class="form-control"></select>
                       </div>
+                      <div class="form-group mb-5">
+                          <label for="caddress">Recipient's Address</label>
+                          <input type="text" id="caddress" class="form-control" name="address" required placeholder="Address">
+                          <!-- <select id="country" name="country" placeholder="Country Name" required class="form-control"></select> -->
+                      </div>
+
                       <div class="form-group mb-5 ">
                           <label for="caccount_name" class="col-form-label">Account Name</label>
                           <input id="caccount_name" type="text" name="account_name" class="form-control" required placeholder="Account Name">

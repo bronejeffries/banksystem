@@ -11,10 +11,10 @@
     <!-- ============================================================== -->
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
-            <h5 class="card-header">Pending Transactions</h5>
+            <h5 class="card-header">Transactions</h5>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                  {% if pending_transactions.length > 0 %}
+                  {% if pending_transactions %}
                   <table class="table">
                       <thead class="bg-light">
                           <tr class="border-0">
@@ -40,7 +40,7 @@
                             <td>{{pending_transaction.country}}</td>
                             <td>{{pending_transaction.to_account_name}} </td>
                             <td>{{pending_transaction.to_account_number}}</td>
-                            <td>${{pending_transaction.amount}}</td>
+                            <td class="amount_carrier" >{{pending_transaction.amount}}</td>
                             <td>{{pending_transaction.initialized_on}}</td>
                             <td><span class="badge-dot badge-brand mr-1"></span>{{pending_transaction.status}}</td>
                         </tr>

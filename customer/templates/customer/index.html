@@ -1,11 +1,9 @@
 {% extends 'customer/basetemplate.html' %}
 
 {% block page_index_active %}active{% endblock %}
-
 {% block body %}
 
 {% load staticfiles %}
-
 <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
         <!-- ============================================================== -->
@@ -14,7 +12,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-header">
-                    <h2 class="pageheader-title">{{request.user.profile.firstname}}'s {{request.user.account.account_type}} </h2>
+                    <h4 class="pageheader-title">{{request.user.profile.firstname}}'s {{request.user.account.account_type}} </h4>
                     <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -40,15 +38,15 @@
                         <div class="card-body">
                           <h5 class="text-muted">Account Name:</h5>
                           <div class="metric-value d-inline-block">
-                              <h1 class="mb-1">{{request.user.account.account_name}}</h1>
+                              <h5 class="mb-1">{{request.user.account.account_name}}</h5>
                           </div>
                           <h5 class="text-muted">Account Number:</h5>
                           <div class="metric-value d-inline-block">
-                              <h1 class="mb-1">{{request.user.account.account_number}}</h1>
+                              <h5 class="mb-1">{{request.user.account.account_number}}</h5>
                           </div>
                             <h5 class="text-muted">Available Amount</h5>
                             <div class="metric-value d-inline-block">
-                                <h1 class="mb-1">${{available_amount}}</h1>
+                                <h5 class="mb-1 amount_carrier" >{{available_amount}}</h5>
                             </div>
                             <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                 <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1"></span>
@@ -70,7 +68,7 @@
                       <h5 class="card-header">Recent Pending Transactions</h5>
                       <div class="card-body p-0">
                           <div class="table-responsive">
-                          {% if pending_transactions.length > 0  %}
+                          {% if pending_transactions %}
                               <table class="table">
                                   <thead class="bg-light">
                                       <tr class="border-0">
@@ -96,7 +94,7 @@
                                         <td>{{pending_transaction.country}}</td>
                                         <td>{{pending_transaction.to_account_name}} </td>
                                         <td>{{pending_transaction.to_account_number}}</td>
-                                        <td>${{pending_transaction.amount}}</td>
+                                        <td class="amount_carrier">{{pending_transaction.amount}}</td>
                                         <td>{{pending_transaction.initialized_on}}</td>
                                         <td><span class="badge-dot badge-brand mr-1"></span>{{pending_transaction.status}}</td>
                                     </tr>
@@ -125,11 +123,13 @@
         <h5 class="card-header">Recent Deposits</h5>
         <div class="card-body p-0">
             <div class="table-responsive">
-              {% if deposits.length > 0 %}
+
+              {% if deposits %}
               <table class="table">
                   <thead class="bg-light">
                       <tr class="border-0">
-                          <th class="border-0">#</th>
+                          <th class="border-0">#
+                            </th>
                           <th class="border-0">Amount</th>
                           <th class="border-0">Initialized On</th>
                       </tr>
@@ -138,7 +138,7 @@
                     {% for deposit in deposits %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>${{deposit.amount}}</td>
+                        <td class="amount_carrier">{{deposit.amount}}</td>
                         <td>{{deposit.created_on}}</td>
                     </tr>
                     {% endfor %}
@@ -156,7 +156,6 @@
         </div>
     </div>
 </div>
-
             </div>
         </div>
     </div>

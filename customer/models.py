@@ -24,7 +24,7 @@ class DepositTransaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
     account_balance_on_deposit = models.IntegerField(default=0)
-    created_on = models.DateField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
 
 class TransferTransaction(models.Model):
@@ -36,3 +36,7 @@ class TransferTransaction(models.Model):
     initialized_on = models.DateField(auto_now_add=True)
     amount = models.IntegerField(null=False)
     status = models.CharField(max_length=25, default='pending')
+    branch_code = models.CharField(max_length=35,null=True)
+    swift_code = models.CharField(max_length=35,null=True)
+    reason = models.CharField(max_length=250,null=True)
+    address = models.CharField(max_length=250,null=True)

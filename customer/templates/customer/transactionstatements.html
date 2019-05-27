@@ -10,7 +10,7 @@
     <aside class="page-aside">
         <div class="aside-content">
             <div class="aside-header">
-                <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse" type="button"><span class="icon"><i class="fas fa-caret-down"></i></span></button><span class="title">Credicopbank</span>
+                <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse" type="button"><span class="icon"><i class="fas fa-caret-down"></i></span></button><span class="title">Credicorpbank</span>
                 <p class="description" >{{request.user.account.account_name}}</p>
                 <p class="description" >{{request.user.account.account_number}}</p>
                 <p class="description" >{{request.user.account.account_type}}</p>
@@ -49,17 +49,17 @@
                               <tr>
                                   <td>{{forloop.counter}}</td>
                                   <td>
-                                    {{deposit_transaction.created_on}}
+                                    {{deposit_transaction.created_on |date:'Y-m-d'}}
                                   </td>
                                   <td>Deposit</td>
-                                  <td>${{deposit_transaction.amount}}</td>
+                                  <td  class="amount_carrier" >{{deposit_transaction.amount}}</td>
                                   <td>   -  </td>
-                                  <td>{{deposit_transaction.account_balance_on_deposit}}</td>
+                                  <td class="amount_carrier">{{deposit_transaction.account_balance_on_deposit}}</td>
                                   <td></td>
                               </tr>
                               {% empty %}
                               <tr>
-                                  <td colspan="8">No transactions records yet</td>
+                                  <td colspan="8">No records yet</td>
                               </tr>
                               {% endfor %}
                             </tbody>
@@ -87,6 +87,5 @@ document.getElementById('print_button').addEventListener('click',function(){
 })
 
 });
-
 </script>
 {% endblock %}
