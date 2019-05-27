@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'banksystem',
         'USER':'root',
-        'PASSWORD':'1234567890',
+        'PASSWORD':'password',
         'HOST':'localhost',
         'PORT':'',
     }
@@ -133,4 +133,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/opt/project/static/'
 #django_heroku.settings(locals())
