@@ -1,6 +1,6 @@
 dj-database-url
 Django
-#django-heroku
+django-heroku
 djangorestframework
 gunicorn
 mysqlclient
