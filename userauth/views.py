@@ -11,7 +11,7 @@ from django.contrib import messages
 
 def customerindex(request):
     if request.method == 'GET':
-        return render(request,'userauth/customer_index.html',{})
+        return render(request,'customer/guest.html',{})
 
 def check_if_password_default(password):
     password_obj = None
@@ -51,7 +51,7 @@ def customerlogin(request):
             messages.warning(request,"Wrong credentials!")
             return HttpResponseRedirect(reverse('userauth:customerindex'))
     else:
-        raise Exception("method not allowed")
+        return render(request, 'userauth/customer_index.html', {})
 
 def customer_logout(request):
     logout(request)
