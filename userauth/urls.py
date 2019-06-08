@@ -5,7 +5,7 @@ app_name = 'userauth'
 
 urlpatterns = [
     url(r'^$', views.customerindex, name='customerindex'),
-    url(r'^login/$', views.customerlogin, name='customerlogin'),
+    url(r'^login/signin/$', views.customerlogin, name='customerlogin'),
     url(r'^logout/customer/$', views.customer_logout, name='customer_logout'),
     url(r'^newaccount/setpassword/$', views.setpassword, name='user_set_password'),
     url(r'^sys/admin/$', views.admin_index, name='admin_index'),
