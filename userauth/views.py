@@ -51,6 +51,8 @@ def customerlogin(request):
             messages.warning(request,"Wrong credentials!")
             return HttpResponseRedirect(reverse('userauth:customerindex'))
     else:
+        if request.user is not None:
+            logout(request)
         return render(request, 'userauth/customer_index.html', {})
 
 def customer_logout(request):
