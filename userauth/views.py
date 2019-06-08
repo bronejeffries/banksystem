@@ -49,7 +49,7 @@ def customerlogin(request):
                 return HttpResponseRedirect(reverse('customer:index'))
         else:
             messages.warning(request,"Wrong credentials!")
-            return HttpResponseRedirect(reverse('userauth:customerindex'))
+            return HttpResponseRedirect(reverse('userauth:customerlogin'))
     else:
         if request.user is not None:
             logout(request)
