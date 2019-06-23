@@ -174,7 +174,7 @@ def makedeposit(request):
 
 
 def get_transaction_by_id(pk):
-    transaction = None;
+    transaction = None
     try:
         transaction = TransferTransaction.objects.get(id=pk)
     except TransferTransaction.DoesNotExist:

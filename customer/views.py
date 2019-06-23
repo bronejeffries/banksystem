@@ -9,7 +9,7 @@ from datetime import date
 from django.db.models import Q
 # Create your views here.
 
-@login_required(login_url='/')
+# @login_required(login_url='/')
 def index(request):
     if request.method=='GET':
         context={}

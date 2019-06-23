@@ -107,7 +107,7 @@ def admin_index(request):
             messages.warning(request,"Wrong credentials!")
             return HttpResponseRedirect(reverse('userauth:admin_index'))
 
-@login_required(login_url='sys/admin/')
+@login_required(login_url='/sys/admin/')
 def add_admin(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -126,5 +126,6 @@ def add_admin(request):
             messages.success(request,'New admin registered successfully')
             return HttpResponseRedirect(reverse('sysadmin:index'))
         else:
-            messages.warning(request, new_admin.errors['username'][0] if new_admin.errors['username'] else "Registration Error")
+            # print(new_admin.errors)
+            messages.warning(request,"Admin Registration Error Check email or username")
             return HttpResponseRedirect(reverse('sysadmin:index'))
