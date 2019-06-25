@@ -35,7 +35,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- google fonts -->
 	<link href="//fonts.googleapis.com/css?family=Niramit:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext,thai,vietnamese" rel="stylesheet">
 	<!-- //google fonts -->
-	
+	<style>
+		@media screen and (max-width: 1000px) {
+			#logo_guest{
+			  display: none;
+			}
+		  }
+	</style>
 </head>
 <body>
 
@@ -47,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<nav class="py-3 d-lg-flex">
 			<div id="logo">
 				<!-- <h1> <a href="#"><span class="fa fa-university"></span></a></h1> -->
-				<img src="{% static 'customer/assets/images/logoguest.jpg' %}" style="width: 70%; height: 70%; " alt="logo" >
+				<img id="logo_guest" src="{% static 'customer/assets/images/logoguest.jpg' %}" style="width: 60%; height: 70%; " alt="logo" >
 			</div>
 			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
 			<input type="checkbox" id="drop" />
