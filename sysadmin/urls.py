@@ -9,5 +9,6 @@ urlpatterns = [
         url(r'^home/accounts/$',views.viewaccounts,name='viewaccounts'),
         url(r'^home/accountholders/$',views.add_customer,name='add_customer'),
         url(r'^home/accountholders/deposit/$',views.makedeposit,name='makedeposit'),
-        url(r'^home/transactions/(?P<pk>[0-9]+)/reverse/$',views.reverse_transaction,name='reverse')
+        url(r'^home/transactions/(?P<pk>[0-9]+)/reverse/$',views.reverse_transaction,name='reverse'),
+        url(r'^home/accounts/(?P<id>[0-9]+)/delete/$',views.delete_customer,name='delete_account')
 ]
