@@ -78,22 +78,22 @@ WSGI_APPLICATION = 'banksystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#DATABASES = {
-#   'default': {
-#       'ENGINE': 'django.db.backends.sqlite3',
-#       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#   }
-#}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+# }
 
 DATABASES = {
-      'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'pof',
-         'USER':'root',
-         'PASSWORD':'1234567890',
-         'HOST':'localhost',
-         'PORT':'',
-     }
+     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pof',
+        'USER':'root',
+        'PASSWORD':'1234567890',
+        'HOST':'localhost',
+        'PORT':'',
+    }
 }
 
 

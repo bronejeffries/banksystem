@@ -138,6 +138,23 @@ def get_account(account_name, account_number):
     else:
         return account
 
+
+@login_required(login_url='/sys/admin/')
+@permission_check_admin
+def delete_customer(request,id):
+    if request.method == 'POST':
+        account = get_account_by_id(id)
+        if account and account is not None:
+            deleted = delete_user_on_fail(account.customer.id)
+            if deleted:
+                messages.success(request,'Account Deleted Sucessfully')
+                return HttpResponseRedirect(reverse('sysadmin:viewaccounts'))
+            else:
+                messages.success(request,'Something Went Wrong')
+                return HttpResponseRedirect(reverse('sysadmin:viewaccounts'))
+    else:
+        return HttpResponseRedirect(reverse('sysadmin:viewaccounts'))
+
 @login_required(login_url='/sys/admin/')
 @permission_check_admin
 def makedeposit(request):
