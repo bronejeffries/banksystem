@@ -69,8 +69,8 @@ def setpassword(request):
 
     elif request.method == 'POST':
         user = get_user(request.user.id)
-        new_password = request.POST['password']
-        old_password = request.POST['old_password']
+        new_password = (request.POST['password']).strip()
+        old_password = request.POST['old_password'].strip()
         if user:
             if len(new_password) > 0:
                 default_password = check_if_password_default(old_password)
@@ -91,6 +91,34 @@ def setpassword(request):
             messages.warning(request,"session expired")
             return HttpResponseRedirect(reverse('userauth:customerindex'))
 
+@login_required(login_url='/sys/admin/')
+def resetPassword(request):
+    if request.method=='GET':
+        return render(request,'userauth/admin_reset_password.html',{})
+    elif request.method == 'POST':
+        user = get_user(request.user.id)
+        new_password = (request.POST['password']).strip()
+        old_password = (request.POST['old_password']).strip()
+        if user:
+            if len(new_password)>0:
+                true_old_password = user.check_password(old_password)
+                if true_old_password:
+                    user.set_password(new_password)
+                    user.save()
+                    login(request,user)
+                    messages.success(request,"Password changed successfully!")
+                    return HttpResponseRedirect(reverse('sysadmin:index'))
+
+                else:
+                    messages.warning(request, "Incorrect old password!")
+                    return HttpResponseRedirect(reverse('userauth:user_reset_password'))
+            else:
+                messages.warning(request,"Password cannot be empty!")
+                return HttpResponseRedirect(reverse('userauth:user_reset_password'))
+        else:
+            messages.warning(request,"session expired")
+            return HttpResponseRedirect(reverse('userauth:admin_index'))
+
 
 def admin_index(request):
     if request.method == 'GET':
@@ -100,6 +128,9 @@ def admin_index(request):
         username=request.POST['username']
         password=request.POST['password']
         user = authenticate(request, username=username, password=password )
+        print(user)
+        print(username)
+        print(password)
         if user is not None and user.is_staff:
             login(request,user)
             return HttpResponseRedirect(reverse('sysadmin:index'))
