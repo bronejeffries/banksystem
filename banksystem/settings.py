@@ -135,5 +135,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/opt/pof/banksystem/staticfiles/'
+STATIC_ROOT = '/opt/banksytem/banksystem/staticfiles/'
 #django_heroku.settings(locals())
