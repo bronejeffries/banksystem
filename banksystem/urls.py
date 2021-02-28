@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from . import views
 from django.conf.urls import handler404
+from django.conf import settings
 from django.conf.urls.static import static
 
 handler404 = views.handle_404
